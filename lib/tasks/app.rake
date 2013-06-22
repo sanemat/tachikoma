@@ -18,7 +18,7 @@ namespace :tachikoma do
       body: ':hamster::hamster::hamster:',
       head: "bot-motoko:feature/bundle-#{@readable_time}",
       base: 'master',
-    },
+    }.to_json,
   }
 
   desc 'clean'
