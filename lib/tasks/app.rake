@@ -52,7 +52,7 @@ namespace :tachikoma do
   task :pull_request do
     response = HTTParty.post(@target_url, @options)
     unless response.created?
-      fail "Do not create pull request yet. #{response.code} #{response.message}"
+      fail "Do not create pull request yet. #{response.code} #{response.message} #{response.body}"
     end
   end
 end
