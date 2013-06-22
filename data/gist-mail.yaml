@@ -2,3 +2,9 @@ url:
   'https://github.com/sanemat/gist-mail.git'
 frequency:
   "every 1.day, :at => '6:30 am'"
+type:
+  'fork'
+language:
+  'ruby'
+version:
+  '2.0.0'
