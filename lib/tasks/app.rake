@@ -2,6 +2,7 @@ namespace :tachikoma do
   @git_name = 'bot-motoko'
   @git_email = 'bot-motoko@al.sane.jp'
   @readable_time = Time.now.utc.strftime('%Y%m%d%H%M%S')
+  @github_token = ENV['TOKEN_FENIX-KNIGHT']
 
   desc 'clean'
   task :clean do
@@ -24,6 +25,7 @@ namespace :tachikoma do
         sh 'bundle update'
         sh 'git add Gemfile.lock'
         sh %Q!git commit -m "Bundle update #{@readable_time}"!
+        sh "git push https://#{@github_token}@github.com/bot-motoko/fenix-knight.git feature/bundle-#{@readable_time}"
       end
     end
   end
