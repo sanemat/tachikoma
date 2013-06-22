@@ -1,7 +1,12 @@
 namespace :tachikoma do
+  desc 'clean_up'
+  task :clean_up do
+    rm_rf(Dir.glob('repos/*'))
+  end
+
   desc 'fetch'
-  task :fetch do
-    puts 'fetch!'
+  task fetch: :clean_up do
+    sh 'git clone https://github.com/sanemat/gist-mail.git repos/gist-mail'
   end
 
   desc 'bundle'
