@@ -6,20 +6,18 @@ namespace :tachikoma do
   @readable_time = Time.now.utc.strftime('%Y%m%d%H%M%S')
   @github_token = ENV['TOKEN_FENIX_KNIGHT']
   @target_url = 'https://api.github.com/repos/mrtaddy/fenix-knight/pulls'
-  @options = {
-    headers: {
-      'User-Agent' => 'Tachikoma bot-motoko',
-      'Authorization' => "token #{@github_token}",
-      'Accept' => 'application/json',
-      'Content-type' => 'application/json',
-    },
-    body: {
-      title: "Bundle update #{@readable_time}",
-      body: ':hamster::hamster::hamster:',
-      head: "bot-motoko:feature/bundle-#{@readable_time}",
-      base: 'master',
-    }.to_json,
+  @headers = {
+    'User-Agent' => 'Tachikoma bot-motoko',
+    'Authorization' => "token #{@github_token}",
+    'Accept' => 'application/json',
+    'Content-type' => 'application/json',
   }
+  @body = {
+    title: "Bundle update #{@readable_time}",
+    body: ':hamster::hamster::hamster:',
+    head: "bot-motoko:feature/bundle-#{@readable_time}",
+    base: 'master',
+  }.to_json
 
   desc 'clean'
   task :clean do
@@ -51,7 +49,7 @@ namespace :tachikoma do
   desc 'pull_request'
   task :pull_request do
     puts @options
-    response = HTTParty.post(@target_url, @options)
+    response = HTTParty.post(@target_url, headers: @headers, body: @body)
     unless response.created?
       fail "Do not create pull request yet. #{response.code} #{response.message} #{response.body}"
     end
