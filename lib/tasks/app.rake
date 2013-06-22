@@ -3,6 +3,19 @@ namespace :tachikoma do
   @git_email = 'bot-motoko@al.sane.jp'
   @readable_time = Time.now.utc.strftime('%Y%m%d%H%M%S')
   @github_token = ENV['TOKEN_FENIX-KNIGHT']
+  @target_url = 'https://api.github.com/repos/mrtaddy/fenix-knight/pulls'
+  @options = {
+    headers: {
+      'User-Agent' => 'Tachikoma bot-motoko',
+      'Authorization' => "token #{@github_token}",
+    },
+    body: {
+      title: "Bundle update #{@readable_time}",
+      body: ':hamster::hamster::hamster:',
+      head: "bot-motoko:feature/bundle-#{@readable_time}",
+      base: 'master',
+    },
+  }
 
   desc 'clean'
   task :clean do
@@ -32,6 +45,9 @@ namespace :tachikoma do
 
   desc 'pull_request'
   task :pull_request do
-    puts 'pull_request!'
+    response = HTTParty.post(@target_url, @options)
+    unless response.created?
+      fail "Do not create pull request yet. #{response.code} #{response.message}"
+    end
   end
 end
