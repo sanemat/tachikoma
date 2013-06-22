@@ -10,6 +10,8 @@ namespace :tachikoma do
     headers: {
       'User-Agent' => 'Tachikoma bot-motoko',
       'Authorization' => "token #{@github_token}",
+      'Accept' => 'application/json',
+      'Content-type' => 'application/json',
     },
     body: {
       title: "Bundle update #{@readable_time}",
