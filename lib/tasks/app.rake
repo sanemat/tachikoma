@@ -1,5 +1,5 @@
 require 'httparty'
-require 'json'
+require 'multi_json'
 
 namespace :tachikoma do
   @git_name = 'bot-motoko'
@@ -13,12 +13,12 @@ namespace :tachikoma do
     'Accept' => 'application/json',
     'Content-type' => 'application/json',
   }
-  @body = {
+  @body = MultiJson.dump({
     title: "Bundle update #{@readable_time}",
     body: ':hamster::hamster::hamster:',
     head: "bot-motoko:feature/bundle-#{@readable_time}",
     base: 'master',
-  }.to_json
+  })
 
   desc 'clean'
   task :clean do
