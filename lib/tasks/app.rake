@@ -11,7 +11,13 @@ namespace :tachikoma do
 
   desc 'bundle'
   task :bundle do
-    puts 'bundle!'
+    Dir.chdir('repos/gist-mail') do
+      sh 'git config user.name bot-motoko'
+      sh 'git config user.email bot-motoko@al.sane.jp'
+      sh 'bundle'
+      sh 'git add Gemfile.lock'
+      sh 'git commit -m "ooooooo"'
+    end
   end
 
   desc 'pull_request'
