@@ -31,6 +31,7 @@ namespace :tachikoma do
   task :bundle do
     Dir.chdir('repos/fenix-knight') do
       Bundler.with_clean_env do
+        sh %Q!sed -e 's/^ruby/#ruby/' Gemfile!
         sh "git config user.name #{@git_name}"
         sh "git config user.email #{@git_email}"
         sh "git checkout -b feature/bundle-#{@readable_time} origin/master"
