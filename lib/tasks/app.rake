@@ -19,6 +19,7 @@ namespace :tachikoma do
       Bundler.with_clean_env do
         sh "git config user.name #{@git_name}"
         sh "git config user.email #{@git_email}"
+        sh "git checkout -b feature/bundle-#{@readable_time} origin/master"
         sh 'bundle --gemfile Gemfile --no-deployment --without nothing'
         sh 'bundle update'
         sh 'git add Gemfile.lock'
