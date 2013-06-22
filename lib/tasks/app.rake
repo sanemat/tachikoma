@@ -1,4 +1,5 @@
 require 'httparty'
+require 'json'
 
 namespace :tachikoma do
   @git_name = 'bot-motoko'
