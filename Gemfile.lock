@@ -3,6 +3,7 @@ PATH
   specs:
     tachikoma (0.0.1)
       httparty
+      multi_json
 
 GEM
   remote: https://rubygems.org/
