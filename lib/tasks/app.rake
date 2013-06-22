@@ -2,7 +2,7 @@ namespace :tachikoma do
   @git_name = 'bot-motoko'
   @git_email = 'bot-motoko@al.sane.jp'
   @readable_time = Time.now.utc.strftime('%Y%m%d%H%M%S')
-  @github_token = ENV['TOKEN_FENIX-KNIGHT']
+  @github_token = ENV['TOKEN_FENIX_KNIGHT']
   @target_url = 'https://api.github.com/repos/mrtaddy/fenix-knight/pulls'
   @options = {
     headers: {
