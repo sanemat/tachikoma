@@ -1,24 +1,6 @@
 # Tachikoma
 
-TODO: Write a gem description
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'tachikoma'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install tachikoma
-
-## Usage
-
-TODO: Write usage instructions here
+Daily Pull Requester with bundle update
 
 ## Contributing
 
