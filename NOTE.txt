@@ -1,0 +1,16 @@
+#TODO
+
+## Feature Request
+- Frequency(whenever gem compatible)
+
+if directry.exist?
+  cd gist-mail
+  git reset --hard HEAD
+  git clean -f
+  git fetch origin
+  git checkout -b feature/bundle-20130628 origin/master
+else
+  git clone https://github.com/sanemat/gist-mail.git
+  cd gist-mail
+  git checkout -b feature/bundle-20130623 origin/master
+end
