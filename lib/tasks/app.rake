@@ -14,7 +14,7 @@ namespace :tachikoma do
     Dir.chdir('repos/gist-mail') do
       sh 'git config user.name bot-motoko'
       sh 'git config user.email bot-motoko@al.sane.jp'
-      sh 'BUNDLE_GEMFILE=Gemfile bundle install'
+      sh 'BUNDLE_GEMFILE=Gemfile bundle --path vendor/bundle'
       sh 'BUNDLE_GEMFILE=Gemfile bundle update'
       sh 'git add Gemfile.lock'
       sh 'git commit -m "ooooooo"'
