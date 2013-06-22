@@ -2,13 +2,19 @@ PATH
   remote: .
   specs:
     tachikoma (0.0.1)
+      httparty
 
 GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.0.9)
     dotenv (0.8.0)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
     method_source (0.8.1)
+    multi_json (1.7.7)
+    multi_xml (0.5.4)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
