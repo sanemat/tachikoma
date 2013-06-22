@@ -15,7 +15,7 @@ namespace :tachikoma do
       Bundler.with_clean_env do
         sh 'git config user.name bot-motoko'
         sh 'git config user.email bot-motoko@al.sane.jp'
-        sh 'bundle --gemfile Gemfile'
+        sh 'bundle --gemfile Gemfile --no-deployment --without nothing'
         sh 'bundle update'
         sh 'git add Gemfile.lock'
         sh 'git commit -m "ooooooo"'
