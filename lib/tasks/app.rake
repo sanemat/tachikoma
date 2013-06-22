@@ -1,3 +1,5 @@
+require 'httparty'
+
 namespace :tachikoma do
   @git_name = 'bot-motoko'
   @git_email = 'bot-motoko@al.sane.jp'
