@@ -18,6 +18,11 @@ namespace :tachikoma do
     @github_token = ENV[github_token_key(@build_for)]
     @git_name = 'bot-motoko'
     @git_email = 'bot-motoko@al.sane.jp'
+    @configure =
+      YAML.load_file(File.join(@data_path, "#{@build_for}.yaml"))
+      .merge(id: @build_for)
+    @fetch_url = @configure['url']
+
     @target_url = 'https://api.github.com/repos/mrtaddy/fenix-knight/pulls'
     @headers = {
       'User-Agent' => 'Tachikoma bot-motoko',
@@ -39,7 +44,7 @@ namespace :tachikoma do
 
   desc 'fetch'
   task fetch: :clean do
-    sh 'git clone https://github.com/mrtaddy/fenix-knight.git repos/fenix-knight'
+    sh "git clone #{@fetch_url} repos/#{@build_for}"
   end
 
   desc 'bundle'
