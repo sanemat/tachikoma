@@ -2,28 +2,34 @@ require 'httparty'
 require 'multi_json'
 
 namespace :tachikoma do
-  @git_name = 'bot-motoko'
-  @git_email = 'bot-motoko@al.sane.jp'
   @readable_time = Time.now.utc.strftime('%Y%m%d%H%M%S')
-  @github_token = ENV['TOKEN_FENIX_KNIGHT']
-  @target_url = 'https://api.github.com/repos/mrtaddy/fenix-knight/pulls'
-  @headers = {
-    'User-Agent' => 'Tachikoma bot-motoko',
-    'Authorization' => "token #{@github_token}",
-    'Accept' => 'application/json',
-    'Content-type' => 'application/json',
-  }
-  @body = MultiJson.dump({
-    title: "Bundle update #{@readable_time}",
-    body: ':hamster::hamster::hamster:',
-    head: "bot-motoko:feature/bundle-#{@readable_time}",
-    base: 'master',
-  })
   @root_path = File.expand_path(File.join(__dir__, '..', '..'))
   @data_path = File.join(@root_path, 'data')
   @repos_path = File.join(@root_path, 'repos')
 
+  # build_for = fenix-knight, github_token_key = TOKEN_FENIX_KNIGHT
+  def github_token_key(build_for)
+    "TOKEN_#{build_for}".gsub(/-/, '_').upcase
+  end
+
   task :load do
+    @build_for = ENV['BUILD_FOR']
+    @github_token = ENV[github_token_key(@build_for)]
+    @git_name = 'bot-motoko'
+    @git_email = 'bot-motoko@al.sane.jp'
+    @target_url = 'https://api.github.com/repos/mrtaddy/fenix-knight/pulls'
+    @headers = {
+      'User-Agent' => 'Tachikoma bot-motoko',
+      'Authorization' => "token #{@github_token}",
+      'Accept' => 'application/json',
+      'Content-type' => 'application/json',
+    }
+    @body = MultiJson.dump({
+      title: "Bundle update #{@readable_time}",
+      body: ':hamster::hamster::hamster:',
+      head: "bot-motoko:feature/bundle-#{@readable_time}",
+      base: 'master',
+    })
   end
 
   task :clean do
