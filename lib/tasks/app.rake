@@ -19,6 +19,9 @@ namespace :tachikoma do
     head: "bot-motoko:feature/bundle-#{@readable_time}",
     base: 'master',
   })
+  @root_path = File.expand_path(File.join(__dir__, '..', '..'))
+  @data_path = File.join(@root_path, 'data')
+  @repos_path = File.join(@root_path, 'repos')
 
   task :load do
   end
