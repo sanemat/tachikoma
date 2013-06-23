@@ -13,3 +13,8 @@ task :tag do
 end
 
 Dir['lib/tasks/*.rake'].each { |task| load(task) }
+
+if ENV['APP_ENV'] && %w(development test).include?(ENV['APP_ENV'])
+  require 'dotenv'
+  Dotenv.load
+end
