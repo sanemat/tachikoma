@@ -1,5 +1,6 @@
 require 'httparty'
 require 'multi_json'
+require 'safe_yaml'
 
 namespace :tachikoma do
   @readable_time = Time.now.utc.strftime('%Y%m%d%H%M%S')
