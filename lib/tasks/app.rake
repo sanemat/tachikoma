@@ -20,7 +20,9 @@ namespace :tachikoma do
     base: 'master',
   })
 
-  desc 'clean'
+  task :load do
+  end
+
   task :clean do
     rm_rf(Dir.glob('repos/*'))
   end
