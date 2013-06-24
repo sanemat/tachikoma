@@ -20,12 +20,12 @@ namespace :tachikoma do
     @git_email = 'bot-motoko@al.sane.jp'
     @configure =
       YAML.load_file(File.join(@data_path, "#{@build_for}.yaml"))
-      .merge(id: @build_for)
     @fetch_url = @configure['url']
+    @base_remote_branch = 'origin/master'
 
     @target_url = 'https://api.github.com/repos/mrtaddy/fenix-knight/pulls'
     @headers = {
-      'User-Agent' => 'Tachikoma bot-motoko',
+      'User-Agent' => "Tachikoma #{@git_name}",
       'Authorization' => "token #{@github_token}",
       'Accept' => 'application/json',
       'Content-type' => 'application/json',
@@ -49,12 +49,12 @@ namespace :tachikoma do
 
   desc 'bundle'
   task :bundle do
-    Dir.chdir('repos/fenix-knight') do
+    Dir.chdir("repos/#{@build_for}") do
       Bundler.with_clean_env do
         sh %Q!sed -i -e 's/^ruby/#ruby/' Gemfile!
         sh "git config user.name #{@git_name}"
         sh "git config user.email #{@git_email}"
-        sh "git checkout -b feature/bundle-#{@readable_time} origin/master"
+        sh "git checkout -b feature/bundle-#{@readable_time} #{@base_remote_branch}"
         sh 'bundle --gemfile Gemfile --no-deployment --without nothing'
         sh 'bundle update'
         sh 'git add Gemfile.lock'
