@@ -63,7 +63,7 @@ namespace :tachikoma do
       'Accept' => 'application/json',
       'Content-type' => 'application/json',
     }
-    @target_head = target_repository_user(@configure['type'], @fetch_url)
+    @target_head = target_repository_user(@configure['type'], @fetch_url, @git_name)
     @body = MultiJson.dump({
       title: "Bundle update #{@readable_time}",
       body: ':hamster::hamster::hamster:',
