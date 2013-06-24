@@ -4,6 +4,7 @@ PATH
     tachikoma (2.0.1.beta)
       httparty
       multi_json
+      safe_yaml
 
 GEM
   remote: https://rubygems.org/
@@ -22,6 +23,7 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
     rake (10.1.0)
+    safe_yaml (0.9.3)
     slop (3.4.5)
 
 PLATFORMS
