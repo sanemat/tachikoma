@@ -4,7 +4,7 @@ require 'safe_yaml'
 
 namespace :tachikoma do
   @readable_time = Time.now.utc.strftime('%Y%m%d%H%M%S')
-  @root_path = File.expand_path(File.join(__dir__, '..', '..'))
+  @root_path = File.expand_path(File.join(__FILE__, '..', '..', '..'))
   @data_path = File.join(@root_path, 'data')
   @repos_path = File.join(@root_path, 'repos')
 
