@@ -36,10 +36,10 @@ namespace :tachikoma do
 
   def target_repository_user(type, fetch_url, git_name)
     if type == 'fork'
+      git_name
+    elsif type == 'shared'
       uri = URI.parse(fetch_url)
       uri.path.sub(%r!/([^/]+)/.*!) { $1 }
-    elsif type == 'shared'
-      git_name
     else
       raise "Invalid type #{type}"
     end
