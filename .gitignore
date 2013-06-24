@@ -19,3 +19,6 @@ tmp
 
 # Ignore checkout repos
 /repos/
+
+$ Ignore dotenv setting
+/.env
