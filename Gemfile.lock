@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tachikoma (2.0.1.beta)
+    tachikoma (2.1.0)
       httparty
       multi_json
       safe_yaml
