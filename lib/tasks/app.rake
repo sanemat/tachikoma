@@ -78,6 +78,7 @@ namespace :tachikoma do
 
   desc 'fetch'
   task fetch: :clean do
+    mkdir_p('repos')
     sh "git clone #{@fetch_url} repos/#{@build_for}"
   end
 
