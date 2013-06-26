@@ -4,7 +4,7 @@ require 'safe_yaml'
 require 'uri'
 
 namespace :tachikoma do
-  @readable_time = Time.now.utc.strftime('%Y%m%d%H%M%S')
+  @default_timestamp_format = '%Y%m%d%H%M%S'
   @root_path = File.expand_path(File.join(__FILE__, '..', '..', '..'))
   @data_path = File.join(@root_path, 'data')
   @repos_path = File.join(@root_path, 'repos')
@@ -55,6 +55,9 @@ namespace :tachikoma do
     @fetch_url = @configure['url']
     @base_remote_branch = 'origin/master'
     @authorized_url = authorized_url_with_type(@fetch_url, @configure['type'], @github_token, @git_name)
+    timestamp_format = @configure['timestamp_format'] || @default_timestamp_format # nil guard
+    timestamp_format = @default_timestamp_format if timestamp_format.empty?        # empty string: ""
+    @readable_time = Time.now.utc.strftime(timestamp_format)
 
     @target_url = target_url(@fetch_url)
     @headers = {
