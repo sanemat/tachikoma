@@ -15,6 +15,29 @@ $ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxx
 $ bundle exec rake tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pull_request
 ```
 
+## Collaborate with private YAML data
+
+Tachikoma uses `./data` as a default data directory that stores YAML setting files.
+
+To locate other data directory, set `LOCAL_DATA_PATH` and `LOCAL_DATA_REMOTE_URL` environment variables.
+
+* `LOCAL_DATA_PATH`: data directory/location of YAML files. relative/absolute path also ok.
+* `LOCAL_DATA_REMOTE_URL`: git clone URL of your data repository. typically HTTPS for public repo, SSH for private repo.
+
+```
+$ export LOCAL_DATA_PATH=<local-data-path>
+$ export LOCAL_DATA_REMOTE_URL=<git-clone-url-of-your-public-or-private-data-repository>
+$ bundle exec rake tachikoma:fetch_data
+```
+
+To work with other tasks, just put other tasks after `tachikoma:fetch_data`.
+
+NOTE: other environment variables such as `BUILD_FOR` are also required
+
+```
+$ bundle exec rake tachikoma:fetch_data tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pull_request
+```
+
 ## Contributing
 
 1. Fork it
