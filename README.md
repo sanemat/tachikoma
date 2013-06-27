@@ -38,6 +38,12 @@ NOTE: other environment variables such as `BUILD_FOR` are also required
 $ bundle exec rake tachikoma:fetch_data tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pull_request
 ```
 
+## Usage as gem (experimental)
+
+Above description is _inside_ tachikoma, below is usage not _inside_ but _outside_ tachikoma, as gem.
+
+https://github.com/sanemat/bot-motoko-tachikoma
+
 ## Contributing
 
 1. Fork it
