@@ -4,6 +4,7 @@ PATH
     tachikoma (2.1.2.beta)
       httparty
       multi_json
+      rake
       safe_yaml
 
 GEM
@@ -34,5 +35,4 @@ DEPENDENCIES
   dotenv
   oj
   pry
-  rake
   tachikoma!
