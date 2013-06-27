@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tachikoma (2.1.2.beta)
+    tachikoma (2.1.2)
       httparty
       multi_json
       rake
