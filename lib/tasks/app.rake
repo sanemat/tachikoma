@@ -2,12 +2,10 @@ require 'httparty'
 require 'multi_json'
 require 'safe_yaml'
 require 'uri'
+require 'tachikoma'
 
 namespace :tachikoma do
   @default_timestamp_format = '%Y%m%d%H%M%S'
-  @root_path = File.expand_path(File.join(__FILE__, '..', '..', '..'))
-  @data_path = File.join(@root_path, 'data')
-  @repos_path = File.join(@root_path, 'repos')
 
   # build_for = fenix-knight, github_token_key = TOKEN_FENIX_KNIGHT
   def github_token_key(build_for)
@@ -50,9 +48,9 @@ namespace :tachikoma do
     if ENV['LOCAL_DATA_PATH'] && ENV['LOCAL_DATA_REMOTE_URL']
       raise "local data path is empty"                     if ENV['LOCAL_DATA_PATH'] == ''
       raise "remote git repository of local data is empty" if ENV['LOCAL_DATA_REMOTE_URL'] == ''
-      @data_path = File.absolute_path(ENV['LOCAL_DATA_PATH'])
-      rm_rf(@data_path) if Dir.exists?(@data_path)
-      sh "git clone #{ENV['LOCAL_DATA_REMOTE_URL']} #{@data_path}"
+      Tachikoma.data_path = File.absolute_path(ENV['LOCAL_DATA_PATH'])
+      rm_rf(Tachikoma.data_path) if Dir.exists?(Tachikoma.data_path)
+      sh "git clone #{ENV['LOCAL_DATA_REMOTE_URL']} #{Tachikoma.data_path}"
       raise "failed to clone remote repo: perhaps wrong git clone URL? #{ENV['LOCAL_DATA_REMOTE_URL']}" unless $?.success?
     else
       warn "`fetch_data` task requires LOCAL_DATA_PATH and LOCAL_DATA_REMOTE_URL environment variables"
@@ -65,7 +63,7 @@ namespace :tachikoma do
     @git_name = 'bot-motoko'
     @git_email = 'bot-motoko@al.sane.jp'
     @configure =
-      YAML.load_file(File.join(@data_path, "#{@build_for}.yaml"))
+      YAML.load_file(File.join(Tachikoma.data_path, "#{@build_for}.yaml"))
     @fetch_url = @configure['url']
     @base_remote_branch = 'origin/master'
     @authorized_url = authorized_url_with_type(@fetch_url, @configure['type'], @github_token, @git_name)
@@ -90,18 +88,18 @@ namespace :tachikoma do
   end
 
   task :clean do
-    rm_rf(Dir.glob('repos/*'))
+    rm_rf(Dir.glob(Tachikoma.repos_path.to_s))
   end
 
   desc 'fetch'
   task fetch: :clean do
-    mkdir_p('repos')
-    sh "git clone #{@fetch_url} repos/#{@build_for}"
+    mkdir_p(Tachikoma.repos_path.to_s)
+    sh "git clone #{@fetch_url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
   end
 
   desc 'bundle'
   task :bundle do
-    Dir.chdir("repos/#{@build_for}") do
+    Dir.chdir("#{Tachikoma.repos_path.to_s}/#{@build_for}") do
       Bundler.with_clean_env do
         sh %Q!sed -i -e 's/^ruby/#ruby/' Gemfile!
         sh "git config user.name #{@git_name}"
