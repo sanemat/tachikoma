@@ -88,18 +88,18 @@ namespace :tachikoma do
   end
 
   task :clean do
-    rm_rf(Dir.glob('repos/*'))
+    rm_rf(Dir.glob(Tachikoma.repos_path.to_s))
   end
 
   desc 'fetch'
   task fetch: :clean do
-    mkdir_p('repos')
-    sh "git clone #{@fetch_url} repos/#{@build_for}"
+    mkdir_p(Tachikoma.repos_path.to_s)
+    sh "git clone #{@fetch_url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
   end
 
   desc 'bundle'
   task :bundle do
-    Dir.chdir("repos/#{@build_for}") do
+    Dir.chdir("#{Tachikoma.repos_path.to_s}/#{@build_for}") do
       Bundler.with_clean_env do
         sh %Q!sed -i -e 's/^ruby/#ruby/' Gemfile!
         sh "git config user.name #{@git_name}"
