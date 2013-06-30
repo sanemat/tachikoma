@@ -44,6 +44,15 @@ Above description is _inside_ tachikoma, below is usage not _inside_ but _outsid
 
 https://github.com/sanemat/bot-motoko-tachikoma
 
+```
+$ mkdir -p my-tachikoma
+$ cd my-tachikoma
+$ bundle init
+$ echo "gem 'tachikoma'" >> Gemfile
+$ bundle
+$ bundle exec tachikoma init
+```
+
 ## Contributing
 
 1. Fork it
