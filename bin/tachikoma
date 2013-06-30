@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+case ARGV[0]
+when 'init'
+  require 'fileutils'
+  File.open('.gitignore', 'a') do |f|
+    f << <<-EOS
+/repos/*
+!/repos/.gitkeep
+    EOS
+  end
+  File.open('Rakefile', 'a') do |f|
+    f << <<-EOS
+require 'bundler/setup'
+require 'tachikoma'
+require 'tachikoma/tasks'
+    EOS
+  end
+  FileUtils.mkdir_p('data')
+  File.open(File.join('data', '__example__.yaml'), 'w') do |f|
+    f << <<-EOS
+url:
+  'https://github.com/sanemat/bot-motoko-tachikoma.git'
+frequency:
+  "every 1.day, :at => '6:30 am'"
+type:
+  'fork'
+language:
+  'ruby'
+version:
+  '2.0.0'
+    EOS
+  end
+  FileUtils.mkdir_p('repos')
+  FileUtils.touch(File.join('repos', '.gitkeep'))
+  puts 'tachikoma init completed!'
+  puts 'You might want to see README!'
+else
+  puts <<-EOS
+  Command Lists
+  tachikoma init               # Initialize files
+
+  rake tachikoma:bundle        # bundle
+  rake tachikoma:fetch         # fetch
+  rake tachikoma:fetch_data    # fetch another `/data` directory from another location
+  rake tachikoma:pull_request  # pull_request
+  EOS
+end
