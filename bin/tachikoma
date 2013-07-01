@@ -11,7 +11,6 @@ when 'init'
   File.open('Rakefile', 'a') do |f|
     f << <<-EOS
 require 'bundler/setup'
-require 'tachikoma'
 require 'tachikoma/tasks'
     EOS
   end
