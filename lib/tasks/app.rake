@@ -43,20 +43,6 @@ namespace :tachikoma do
     end
   end
 
-  desc 'fetch another `/data` directory from another location'
-  task :fetch_data do
-    if ENV['LOCAL_DATA_PATH'] && ENV['LOCAL_DATA_REMOTE_URL']
-      raise "local data path is empty"                     if ENV['LOCAL_DATA_PATH'] == ''
-      raise "remote git repository of local data is empty" if ENV['LOCAL_DATA_REMOTE_URL'] == ''
-      Tachikoma.data_path = File.absolute_path(ENV['LOCAL_DATA_PATH'])
-      rm_rf(Tachikoma.data_path) if Dir.exists?(Tachikoma.data_path)
-      sh "git clone #{ENV['LOCAL_DATA_REMOTE_URL']} #{Tachikoma.data_path}"
-      raise "failed to clone remote repo: perhaps wrong git clone URL? #{ENV['LOCAL_DATA_REMOTE_URL']}" unless $?.success?
-    else
-      warn "`fetch_data` task requires LOCAL_DATA_PATH and LOCAL_DATA_REMOTE_URL environment variables"
-    end
-  end
-
   task :load do
     @build_for = ENV['BUILD_FOR']
     @github_token = ENV[github_token_key(@build_for)]
