@@ -49,7 +49,7 @@ namespace :tachikoma do
     @git_name = 'bot-motoko'
     @git_email = 'bot-motoko@al.sane.jp'
     @configure =
-      YAML.load_file(File.join(Tachikoma.data_path, "#{@build_for}.yaml"))
+      YAML.safe_load_file(File.join(Tachikoma.data_path, "#{@build_for}.yaml"))
     @fetch_url = @configure['url']
     @base_remote_branch = 'origin/master'
     @authorized_url = authorized_url_with_type(@fetch_url, @configure['type'], @github_token, @git_name)
