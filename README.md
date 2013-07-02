@@ -2,9 +2,7 @@
 
 Daily Pull Requester with bundle update
 
-## Usage as gem (experimental)
-
-Above description is _inside_ tachikoma, below is usage not _inside_ but _outside_ tachikoma, as gem.
+## Usage as gem
 
 https://github.com/sanemat/bot-motoko-tachikoma
 
@@ -15,6 +13,16 @@ $ bundle init
 $ echo "gem 'tachikoma'" >> Gemfile
 $ bundle
 $ bundle exec tachikoma init
+```
+
+1. Get GitHub OAuth2 token: See [Creating an OAuth token for command-line use](https://help.github.com/articles/creating-an-oauth-token-for-command-line-use)
+2. Add YAML of repository you want to build by Tachikoma: Copy `data/fenix-knight.yaml` then edit `url` and `type`. to clone URL of your repository. Change `type` to `shared`.
+3. Run below command in your shell:                                                                                                               
+                                                                                                                                                  
+```                                                                                                                                               
+$ export BUILD_FOR=<your-repository-name-that-is-same-to-yaml-filename>                                                                           
+$ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx                                        
+$ bundle exec rake tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pull_request
 ```
 
 ## Contributing
