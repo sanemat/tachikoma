@@ -18,11 +18,11 @@ $ bundle exec tachikoma init
 
 1. Get GitHub OAuth2 token: See [Creating an OAuth token for command-line use](https://help.github.com/articles/creating-an-oauth-token-for-command-line-use)
 2. Add YAML of repository you want to build by Tachikoma: Copy `data/bot-motoko-tachikoma.yaml` then edit `url` and `type`. to clone URL of your repository. Change `type` to `shared`, if you use shared repository model.
-3. Run below command in your shell:                                                                                                               
-                                                                                                                                                  
-```                                                                                                                                               
-$ export BUILD_FOR=<your-repository-name-that-is-same-to-yaml-filename>                                                                           
-$ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx                                        
+3. Run below command in your shell:
+
+```
+$ export BUILD_FOR=<your-repository-name-that-is-same-to-yaml-filename>
+$ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 $ bundle exec rake tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pull_request
 ```
 
