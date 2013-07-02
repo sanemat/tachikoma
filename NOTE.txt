@@ -1,6 +1,5 @@
 #TODO
 - heroku build pack (sqlite)
-- Gem-ish usage (load tasks)
 
 ## Feature Request
 - Notify if fail
