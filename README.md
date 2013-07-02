@@ -1,5 +1,7 @@
 # Tachikoma
 
+[![Gem Version](https://badge.fury.io/rb/tachikoma.png)](http://badge.fury.io/rb/tachikoma)
+
 Daily Pull Requester with bundle update
 
 ## Usage as gem
