@@ -15,7 +15,7 @@ require 'tachikoma/tasks'
     EOS
   end
   FileUtils.mkdir_p('data')
-  File.open(File.join('data', '__example__.yaml'), 'w') do |f|
+  File.open(File.join('data', 'bot-motoko-tachikoma.yaml'), 'w') do |f|
     f << <<-EOS
 url:
   'https://github.com/sanemat/bot-motoko-tachikoma.git'
