@@ -17,8 +17,5 @@ test/tmp
 test/version_tmp
 tmp
 
-# Ignore checkout repos
-/repos/
-
 $ Ignore dotenv setting
 /.env
