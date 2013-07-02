@@ -3,8 +3,7 @@
 .bundle
 .config
 .yardoc
-# For heroku deploy
-# Gemfile.lock
+/Gemfile.lock
 InstalledFiles
 _yardoc
 coverage
