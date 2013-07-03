@@ -4,7 +4,7 @@
 [![Build Status](https://api.travis-ci.org/sanemat/tachikoma.png?branch=master)](https://travis-ci.org/sanemat/tachikoma)
 [![Code Climate](https://codeclimate.com/github/sanemat/tachikoma.png)](https://codeclimate.com/github/sanemat/tachikoma)
 
-Daily Pull Requester with bundle update
+Daily Pull Requester with bundle update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
 
 ## Usage as gem
 
