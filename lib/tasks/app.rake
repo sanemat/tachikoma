@@ -74,12 +74,12 @@ namespace :tachikoma do
   end
 
   task :clean do
-    rm_rf(Dir.glob(Tachikoma.repos_path.to_s))
+    mkdir_p(Tachikoma.repos_path)
+    rm_rf(Dir.glob(File.join(Tachikoma.repos_path, '*')))
   end
 
   desc 'fetch'
   task fetch: :clean do
-    mkdir_p(Tachikoma.repos_path.to_s)
     sh "git clone #{@fetch_url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
   end
 
