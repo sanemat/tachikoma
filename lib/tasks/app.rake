@@ -87,7 +87,6 @@ namespace :tachikoma do
   task :bundle do
     Dir.chdir("#{Tachikoma.repos_path.to_s}/#{@build_for}") do
       Bundler.with_clean_env do
-        sh %Q!sed -i -e 's/^ruby/#ruby/' Gemfile!
         sh "git config user.name #{@git_name}"
         sh "git config user.email #{@git_email}"
         sh "git checkout -b feature/bundle-#{@readable_time} #{@base_remote_branch}"
