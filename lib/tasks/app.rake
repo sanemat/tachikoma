@@ -78,11 +78,13 @@ namespace :tachikoma do
       'Content-type' => 'application/json',
     }
     @target_head = target_repository_user(@configure['type'], @fetch_url, @github_account)
+    @pull_request_body = @configure['pull_request_body']
+    @pull_request_base = @configure['pull_request_base']
     @body = MultiJson.dump({
       title: "Bundle update #{@readable_time}",
-      body: ':hamster::hamster::hamster:',
+      body: @pull_request_body,
       head: "#{@target_head}:feature/bundle-#{@readable_time}",
-      base: 'master',
+      base: @pull_request_base,
     })
   end
 
