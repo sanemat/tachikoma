@@ -27,4 +27,14 @@ module Tachikoma
   def self.repos_path=(repos_path)
     @repos_path = Pathname.new File.expand_path(repos_path)
   end
+
+  # /path/to/gem/tachikoma
+  def self.original_root_path
+    @original_root_path ||= Pathname.new File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
+  end
+
+  # /path/to/gem/tachikoma/data
+  def self.original_data_path
+    @original_data_path ||= original_root_path.join('data')
+  end
 end
