@@ -64,20 +64,21 @@ namespace :tachikoma do
     @commiter_name = @configure['commiter_name']
     @commiter_email = @configure['commiter_email']
     @github_account = @configure['github_account']
-    @fetch_url = @configure['url']
+    @url = @configure['url']
+    @type = @configure['type']
     @base_remote_branch = @configure['base_remote_branch']
-    @authorized_url = authorized_url_with_type(@fetch_url, @configure['type'], @github_token, @github_account)
+    @authorized_url = authorized_url_with_type(@url, @type, @github_token, @github_account)
     @timestamp_format = @configure['timestamp_format'] || @default_timestamp_format
     @readable_time = Time.now.utc.strftime(@timestamp_format)
 
-    @target_url = target_url(@fetch_url)
+    @target_url = target_url(@url)
     @headers = {
       'User-Agent' => "Tachikoma #{@github_account}",
       'Authorization' => "token #{@github_token}",
       'Accept' => 'application/json',
       'Content-type' => 'application/json',
     }
-    @target_head = target_repository_user(@configure['type'], @fetch_url, @github_account)
+    @target_head = target_repository_user(@type, @url, @github_account)
     @pull_request_body = @configure['pull_request_body']
     @pull_request_base = @configure['pull_request_base']
     @body = MultiJson.dump({
@@ -95,13 +96,14 @@ namespace :tachikoma do
 
   desc 'fetch'
   task fetch: :clean do
-    sh "git clone #{@fetch_url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
+    sh "git clone #{@url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
   end
 
   desc 'bundle'
   task :bundle do
     Dir.chdir("#{Tachikoma.repos_path.to_s}/#{@build_for}") do
       Bundler.with_clean_env do
+        sh %Q!sed -i -e 's/^ruby/#ruby/' Gemfile!
         sh "git config user.name #{@commiter_name}"
         sh "git config user.email #{@commiter_email}"
         sh "git checkout -b feature/bundle-#{@readable_time} #{@base_remote_branch}"
