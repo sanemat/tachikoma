@@ -6,3 +6,5 @@ github_account:
   'bot-motoko'
 base_remote_branch:
   'origin/master'
+timestamp_format:
+  '%Y%m%d%H%M%S'

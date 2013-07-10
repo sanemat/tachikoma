@@ -5,6 +5,7 @@ require 'uri'
 require 'tachikoma'
 
 namespace :tachikoma do
+  # deprecated, this will be removed v3.1.0
   @default_timestamp_format = '%Y%m%d%H%M%S'
 
   # build_for = fenix-knight, github_token_key = TOKEN_FENIX_KNIGHT
@@ -66,9 +67,8 @@ namespace :tachikoma do
     @fetch_url = @configure['url']
     @base_remote_branch = @configure['base_remote_branch']
     @authorized_url = authorized_url_with_type(@fetch_url, @configure['type'], @github_token, @github_account)
-    timestamp_format = @configure['timestamp_format'] || @default_timestamp_format # nil guard
-    timestamp_format = @default_timestamp_format if timestamp_format.empty?        # empty string: ""
-    @readable_time = Time.now.utc.strftime(timestamp_format)
+    @timestamp_format = @configure['timestamp_format'] || @default_timestamp_format
+    @readable_time = Time.now.utc.strftime(@timestamp_format)
 
     @target_url = target_url(@fetch_url)
     @headers = {
