@@ -15,6 +15,10 @@ require 'tachikoma/tasks'
     EOS
   end
   FileUtils.mkdir_p('data')
+  File.open(File.join('data', '__user_config__.yaml'), 'w') do |f|
+    f << <<-EOS
+    EOS
+  end
   File.open(File.join('data', 'bot-motoko-tachikoma.yaml'), 'w') do |f|
     f << <<-EOS
 url:
