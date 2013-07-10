@@ -1,0 +1,14 @@
+commiter_name:
+  'bot-motoko'
+commiter_email:
+  'bot-motoko@al.sane.jp'
+github_account:
+  'bot-motoko'
+base_remote_branch:
+  'origin/master'
+timestamp_format:
+  '%Y%m%d%H%M%S'
+pull_request_body:
+  ':hamster::hamster::hamster:'
+pull_request_base:
+  'master'
