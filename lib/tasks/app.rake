@@ -46,10 +46,22 @@ namespace :tachikoma do
   task :load do
     @build_for = ENV['BUILD_FOR']
     @github_token = ENV[github_token_key(@build_for)]
+
+    base_config_path = File.join(Tachikoma.original_data_path, 'default.yaml')
+    base_config = YAML.safe_load_file(base_config_path) || {}
+    user_config_path = File.join(Tachikoma.data_path, "__user_config__.yaml")
+    user_config = YAML.safe_load_file(user_config_path) if File.exist?(user_config_path)
+    user_config ||= {}
+    each_config_path = File.join(Tachikoma.data_path, "#{@build_for}.yaml")
+    each_config = YAML.safe_load_file(each_config_path) if File.exist?(each_config_path)
+    unless each_config
+      fail %Q!Something wrong, BUILD_FOR: #{@build_for}, your config_path: #{each_config_path}!
+    end
+
+    @configure = base_config.merge(user_config).merge(each_config)
+
     @git_name = 'bot-motoko'
     @git_email = 'bot-motoko@al.sane.jp'
-    @configure =
-      YAML.safe_load_file(File.join(Tachikoma.data_path, "#{@build_for}.yaml"))
     @fetch_url = @configure['url']
     @base_remote_branch = 'origin/master'
     @authorized_url = authorized_url_with_type(@fetch_url, @configure['type'], @github_token, @git_name)
