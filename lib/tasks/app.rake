@@ -64,7 +64,7 @@ namespace :tachikoma do
     @commiter_email = @configure['commiter_email']
     @github_account = @configure['github_account']
     @fetch_url = @configure['url']
-    @base_remote_branch = 'origin/master'
+    @base_remote_branch = @configure['base_remote_branch']
     @authorized_url = authorized_url_with_type(@fetch_url, @configure['type'], @github_token, @github_account)
     timestamp_format = @configure['timestamp_format'] || @default_timestamp_format # nil guard
     timestamp_format = @default_timestamp_format if timestamp_format.empty?        # empty string: ""

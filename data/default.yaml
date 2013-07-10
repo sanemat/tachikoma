@@ -4,3 +4,5 @@ commiter_email:
   'bot-motoko@al.sane.jp'
 github_account:
   'bot-motoko'
+base_remote_branch:
+  'origin/master'
