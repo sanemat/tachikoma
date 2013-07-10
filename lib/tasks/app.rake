@@ -32,9 +32,9 @@ namespace :tachikoma do
     'https://api.github.com/repos/' + uri.path.sub(%r!^/(.*)\.git$!) { $1 } + '/pulls'
   end
 
-  def target_repository_user(type, fetch_url, git_name)
+  def target_repository_user(type, fetch_url, github_account)
     if type == 'fork'
-      git_name
+      github_account
     elsif type == 'shared'
       uri = URI.parse(fetch_url)
       uri.path.sub(%r!/([^/]+)/.*!) { $1 }
@@ -60,23 +60,24 @@ namespace :tachikoma do
 
     @configure = base_config.merge(user_config).merge(each_config)
 
-    @git_name = 'bot-motoko'
-    @git_email = 'bot-motoko@al.sane.jp'
+    @commiter_name = @configure['commiter_name']
+    @commiter_email = @configure['commiter_email']
+    @github_account = @configure['github_account']
     @fetch_url = @configure['url']
     @base_remote_branch = 'origin/master'
-    @authorized_url = authorized_url_with_type(@fetch_url, @configure['type'], @github_token, @git_name)
+    @authorized_url = authorized_url_with_type(@fetch_url, @configure['type'], @github_token, @github_account)
     timestamp_format = @configure['timestamp_format'] || @default_timestamp_format # nil guard
     timestamp_format = @default_timestamp_format if timestamp_format.empty?        # empty string: ""
     @readable_time = Time.now.utc.strftime(timestamp_format)
 
     @target_url = target_url(@fetch_url)
     @headers = {
-      'User-Agent' => "Tachikoma #{@git_name}",
+      'User-Agent' => "Tachikoma #{@github_account}",
       'Authorization' => "token #{@github_token}",
       'Accept' => 'application/json',
       'Content-type' => 'application/json',
     }
-    @target_head = target_repository_user(@configure['type'], @fetch_url, @git_name)
+    @target_head = target_repository_user(@configure['type'], @fetch_url, @github_account)
     @body = MultiJson.dump({
       title: "Bundle update #{@readable_time}",
       body: ':hamster::hamster::hamster:',
@@ -99,8 +100,8 @@ namespace :tachikoma do
   task :bundle do
     Dir.chdir("#{Tachikoma.repos_path.to_s}/#{@build_for}") do
       Bundler.with_clean_env do
-        sh "git config user.name #{@git_name}"
-        sh "git config user.email #{@git_email}"
+        sh "git config user.name #{@commiter_name}"
+        sh "git config user.email #{@commiter_email}"
         sh "git checkout -b feature/bundle-#{@readable_time} #{@base_remote_branch}"
         sh 'bundle --gemfile Gemfile --no-deployment --without nothing'
         sh 'bundle update'
