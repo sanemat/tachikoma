@@ -1,5 +1,3 @@
-require 'httparty'
-require 'multi_json'
 require 'safe_yaml'
 require 'uri'
 require 'tachikoma'
