@@ -3,6 +3,7 @@ require 'multi_json'
 require 'safe_yaml'
 require 'uri'
 require 'tachikoma'
+require 'octokit'
 
 namespace :tachikoma do
   # deprecated, this will be removed v3.1.0

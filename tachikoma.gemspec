@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'multi_json'
   spec.add_dependency 'safe_yaml'
   spec.add_dependency 'rake'
+  spec.add_dependency 'octokit'
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency 'dotenv'
