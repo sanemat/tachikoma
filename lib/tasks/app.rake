@@ -1,8 +1,7 @@
-require 'httparty'
-require 'multi_json'
 require 'safe_yaml'
 require 'uri'
 require 'tachikoma'
+require 'octokit'
 
 namespace :tachikoma do
   # deprecated, this will be removed v3.1.0
@@ -28,11 +27,6 @@ namespace :tachikoma do
     path.sub(%r!^/[^/]+!) { '/' + github_account }
   end
 
-  def target_url(fetch_url)
-    uri = URI.parse(fetch_url)
-    'https://api.github.com/repos/' + uri.path.sub(%r!^/(.*)\.git$!) { $1 } + '/pulls'
-  end
-
   def target_repository_user(type, fetch_url, github_account)
     if type == 'fork'
       github_account
@@ -42,6 +36,10 @@ namespace :tachikoma do
     else
       raise "Invalid type #{type}"
     end
+  end
+
+  def repository_identity(url)
+    %r!((?:[^/]*?)/(?:[^/]*?))(?:\.git)?$!.match(url)[1]
   end
 
   task :load do
@@ -71,22 +69,12 @@ namespace :tachikoma do
     @timestamp_format = @configure['timestamp_format'] || @default_timestamp_format
     @readable_time = Time.now.utc.strftime(@timestamp_format)
 
-    @target_url = target_url(@url)
-    @headers = {
-      'User-Agent' => "Tachikoma #{@github_account}",
-      'Authorization' => "token #{@github_token}",
-      'Accept' => 'application/json',
-      'Content-type' => 'application/json',
-    }
     @target_head = target_repository_user(@type, @url, @github_account)
+    @pull_request_url = repository_identity(@url)
     @pull_request_body = @configure['pull_request_body']
     @pull_request_base = @configure['pull_request_base']
-    @body = MultiJson.dump({
-      title: "Bundle update #{@readable_time}",
-      body: @pull_request_body,
-      head: "#{@target_head}:feature/bundle-#{@readable_time}",
-      base: @pull_request_base,
-    })
+    @pull_request_head = "#{@target_head}:feature/bundle-#{@readable_time}"
+    @pull_request_title = "Bundle update #{@readable_time}"
   end
 
   task :clean do
@@ -118,11 +106,7 @@ namespace :tachikoma do
 
   desc 'pull_request'
   task :pull_request do
-    puts @headers
-    puts @body
-    response = HTTParty.post(@target_url, headers: @headers, body: @body)
-    unless response.created?
-      fail "Do not create pull request yet. #{response.code} #{response.message} #{response.body}"
-    end
+    @client = Octokit::Client.new(login: @github_account, oauth_token: @github_token)
+    @client.create_pull_request(@pull_request_url, @pull_request_base, @pull_request_head, @pull_request_title, @pull_request_body)
   end
 end
