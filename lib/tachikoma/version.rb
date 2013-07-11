@@ -1,3 +1,3 @@
 module Tachikoma
-  VERSION = "3.0.2.beta"
+  VERSION = "3.0.2"
 end
