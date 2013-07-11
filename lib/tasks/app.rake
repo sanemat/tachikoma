@@ -29,11 +29,6 @@ namespace :tachikoma do
     path.sub(%r!^/[^/]+!) { '/' + github_account }
   end
 
-  def target_url(fetch_url)
-    uri = URI.parse(fetch_url)
-    'https://api.github.com/repos/' + uri.path.sub(%r!^/(.*)\.git$!) { $1 } + '/pulls'
-  end
-
   def target_repository_user(type, fetch_url, github_account)
     if type == 'fork'
       github_account
