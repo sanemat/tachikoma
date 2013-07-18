@@ -98,7 +98,7 @@ namespace :tachikoma do
         sh 'bundle --gemfile Gemfile --no-deployment --without nothing'
         sh 'bundle update'
         sh 'git add Gemfile.lock'
-        sh %Q!git commit -m "Bundle update #{@readable_time}"!
+        sh %Q!git commit -m "Bundle update #{@readable_time}"! do; end # ignore exitstatus
         sh "git push #{@authorized_url} feature/bundle-#{@readable_time}"
       end
     end
