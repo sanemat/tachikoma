@@ -6,6 +6,9 @@
 
 Daily Pull Requester with bundle update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
 
+[![screen shot 2013-07-22 at 8 09 29 am](https://f.cloud.github.com/assets/75448/832475/b0ce829a-f25a-11e2-8984-521dbe7d838e.png)](https://vimeo.com/70733613)
+
+
 ## Usage as gem
 
 see: https://github.com/sanemat/bot-motoko-tachikoma
