@@ -4,6 +4,7 @@ when 'init'
   require 'fileutils'
   File.open('.gitignore', 'a') do |f|
     f << <<-EOS
+
 /repos/*
 !/repos/.gitkeep
     EOS
@@ -11,6 +12,7 @@ when 'init'
   puts 'appended .gitignore'
   File.open('Rakefile', 'a') do |f|
     f << <<-EOS
+
 require 'bundler/setup'
 require 'tachikoma/tasks'
     EOS
