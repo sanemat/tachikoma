@@ -17,10 +17,8 @@ namespace :tachikoma do
     case type
     when 'fork'
       %Q!#{uri.scheme}://#{github_token}@#{uri.host}#{path_for_fork(uri.path, github_account)}!
-    when 'shared'
+    when 'shared', 'private'
       "#{uri.scheme}://#{github_token}@#{uri.host}#{uri.path}"
-    when 'private'
-      "#{uri.scheme}://git@#{uri.host}#{uri.path}"
     else
       raise "Invalid type #{type}"
     end
