@@ -14,9 +14,10 @@ namespace :tachikoma do
 
   def authorized_url_with_type(fetch_url, type, github_token, github_account)
     uri = URI.parse(fetch_url)
-    if type == 'fork'
+    case type
+    when 'fork'
       %Q!#{uri.scheme}://#{github_token}@#{uri.host}#{path_for_fork(uri.path, github_account)}!
-    elsif type == 'shared'
+    when 'shared', 'private'
       "#{uri.scheme}://#{github_token}@#{uri.host}#{uri.path}"
     else
       raise "Invalid type #{type}"
@@ -28,9 +29,10 @@ namespace :tachikoma do
   end
 
   def target_repository_user(type, fetch_url, github_account)
-    if type == 'fork'
+    case type
+    when 'fork'
       github_account
-    elsif type == 'shared'
+    when 'shared', 'private'
       uri = URI.parse(fetch_url)
       uri.path.sub(%r!/([^/]+)/.*!) { $1 }
     else
@@ -84,7 +86,11 @@ namespace :tachikoma do
 
   desc 'fetch'
   task fetch: :clean do
-    sh "git clone #{@url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
+    if @type == 'private'
+      sh "git clone #{@authorized_url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
+    else
+      sh "git clone #{@url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
+    end
   end
 
   desc 'bundle'
