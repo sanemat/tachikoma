@@ -1,4 +1,4 @@
-require "tachikoma/version"
+require 'tachikoma/version'
 require 'tachikoma/settings'
 
 module Tachikoma
