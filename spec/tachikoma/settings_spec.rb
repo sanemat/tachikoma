@@ -2,8 +2,8 @@ require 'tachikoma/settings'
 describe Tachikoma do
   describe '.root_path' do
     let(:somewhere) { '/path/to/somewhere' }
-    let(:datapath) { somewhere + '/data'}
-    let(:repospath) { somewhere + '/repos'}
+    let(:datapath) { somewhere + '/data' }
+    let(:repospath) { somewhere + '/repos' }
 
     before :each do
       Dir.stub(:pwd).and_return(somewhere)
