@@ -50,7 +50,7 @@ namespace :tachikoma do
 
     base_config_path = File.join(Tachikoma.original_data_path, 'default.yaml')
     base_config = YAML.safe_load_file(base_config_path) || {}
-    user_config_path = File.join(Tachikoma.data_path, "__user_config__.yaml")
+    user_config_path = File.join(Tachikoma.data_path, '__user_config__.yaml')
     user_config = YAML.safe_load_file(user_config_path) if File.exist?(user_config_path)
     user_config ||= {}
     each_config_path = File.join(Tachikoma.data_path, "#{@build_for}.yaml")

@@ -1,5 +1,6 @@
 require 'pathname'
 
+# Settings of Tachikoma
 module Tachikoma
   class << self
     # ~/users-tachikoma-dir
