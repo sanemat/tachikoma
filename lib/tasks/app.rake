@@ -44,9 +44,9 @@ namespace :tachikoma do
     %r!((?:[^/]*?)/(?:[^/]*?))(?:\.git)?$!.match(url)[1]
   end
 
-  def bundler_parallel_option(version, parallel_number)
+  def bundler_parallel_option(bundler_version, parallel_number)
     # bundler 1.4.0.pre.1 gets parallel number option
-    if version > '1.4' && parallel_number > 1
+    if bundler_version > '1.4' && parallel_number > 1
       "--jobs=#{@configure['bundler_parallel_number']}"
     else
       ''
