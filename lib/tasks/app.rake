@@ -47,7 +47,7 @@ namespace :tachikoma do
   def bundler_parallel_option(bundler_version, parallel_number)
     # bundler 1.4.0.pre.1 gets parallel number option
     if bundler_version > '1.4' && parallel_number > 1
-      "--jobs=#{@configure['bundler_parallel_number']}"
+      "--jobs=#{parallel_number}"
     end
   end
 
