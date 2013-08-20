@@ -44,6 +44,13 @@ namespace :tachikoma do
     %r!((?:[^/]*?)/(?:[^/]*?))(?:\.git)?$!.match(url)[1]
   end
 
+  def bundler_parallel_option(bundler_version, parallel_number)
+    # bundler 1.4.0.pre.1 gets parallel number option
+    if Gem::Version.create(bundler_version) >= Gem::Version.create('1.4.0.pre.1') && parallel_number > 1
+      "--jobs=#{parallel_number}"
+    end
+  end
+
   task :load do
     @build_for = ENV['BUILD_FOR']
     @github_token = ENV[github_token_key(@build_for)]
@@ -70,6 +77,7 @@ namespace :tachikoma do
     @authorized_url = authorized_url_with_type(@url, @type, @github_token, @github_account)
     @timestamp_format = @configure['timestamp_format'] || @default_timestamp_format
     @readable_time = Time.now.utc.strftime(@timestamp_format)
+    @parallel_option = bundler_parallel_option(Bundler::VERSION, @configure['bundler_parallel_number'])
 
     @target_head = target_repository_user(@type, @url, @github_account)
     @pull_request_url = repository_identity(@url)
@@ -101,7 +109,7 @@ namespace :tachikoma do
         sh "git config user.name #{@commiter_name}"
         sh "git config user.email #{@commiter_email}"
         sh "git checkout -b feature/bundle-#{@readable_time} #{@base_remote_branch}"
-        sh 'bundle --gemfile Gemfile --no-deployment --without nothing'
+        sh "bundle --gemfile Gemfile --no-deployment --without nothing #{@parallel_option}"
         sh 'bundle update'
         sh 'git add Gemfile.lock'
         sh %Q!git commit -m "Bundle update #{@readable_time}"! do; end # ignore exitstatus
