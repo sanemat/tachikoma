@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'safe_yaml'
   spec.add_dependency 'rake'
-  spec.add_dependency 'octokit'
+  spec.add_dependency 'octokit', '< 2'
   spec.add_dependency 'json'
 
   spec.add_development_dependency 'bundler', '~> 1.3'
