@@ -118,6 +118,21 @@ namespace :tachikoma do
     end
   end
 
+  desc 'carton'
+  task :carton do
+    Dir.chdir("#{Tachikoma.repos_path.to_s}/#{@build_for}") do
+      sh "git config user.name #{@commiter_name}"
+      sh "git config user.email #{@commiter_email}"
+      sh "git checkout -b feature/carton-#{@readable_time} #{@base_remote_branch}"
+      sh 'carton install'
+      sh 'carton update'
+      sh 'git add carton.lock' if File.exist?('carton.lock')
+      sh 'git add cpanfile.snapshot' if File.exist?('cpanfile.snapshot')
+      sh %Q!git commit -m "Carton update #{@readable_time}"! do; end # ignore exitstatus
+      sh "git push #{@authorized_url} feature/carton-#{@readable_time}"
+    end
+  end
+
   desc 'pull_request'
   task :pull_request do
     begin
