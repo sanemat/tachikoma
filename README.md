@@ -33,6 +33,8 @@ $ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxx
 $ bundle exec rake tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pull_request
 ```
 
+If you use carton, then you use `tachikoma:carton` instead of `tachikoma:bundle`.
+
 ### Build script example
 
 - [cloudbees.com dev@cloud](https://gist.github.com/sanemat/5859031)
