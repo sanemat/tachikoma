@@ -6,8 +6,8 @@
 
 Daily Pull Requester with bundle/carton update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
 
-[![screen shot 2013-07-22 at 8 09 29 am](https://f.cloud.github.com/assets/75448/832475/b0ce829a-f25a-11e2-8984-521dbe7d838e.png)](https://vimeo.com/70733613)
-
+![tachikoma](https://gist.github.com/sanemat/6605029/raw/ztachikoma-demo5.gif 'tachikoma')
+![tachikoma](https://gist.github.com/sanemat/6605029/raw/ztachikoma-demo6.gif 'tachikoma')
 
 ## Usage as gem
 
@@ -32,6 +32,8 @@ $ export BUILD_FOR=<your-repository-name-that-is-same-to-yaml-filename>
 $ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 $ bundle exec rake tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pull_request
 ```
+
+If you use carton, then you use `tachikoma:carton` instead of `tachikoma:bundle`.
 
 ### Build script example
 
@@ -58,3 +60,14 @@ For more information on SemVer, please visit http://semver.org.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Resources
+
+### Concept
+- [Continuous gem dependency updating with Jenkins and Pull Request](http://rubykaigi.org/2013/talk/S72) at Rubykaigi2013 Talk by @kyanny [movie](http://vimeo.com/68300423), [slide](https://speakerdeck.com/kyanny/continuous-gem-dependency-updating-with-jenkins-and-pull-request)
+
+### Screencast
+- Tachikoma 10min(silent) [![screen shot 2013-07-22 at 8 09 29 am](https://f.cloud.github.com/assets/75448/832475/b0ce829a-f25a-11e2-8984-521dbe7d838e.png)](https://vimeo.com/70733613)
+
+### Talk
+- [Updating Library Dependencies Off and On with Tachikoma](http://yapcasia.org/2013/talk/show/f7fe8ed4-1bcd-11e3-93a2-f74c6aeab6a4) at YAPC::Asia Tokyo 2013 Lightning Talk by @sanemat [slide](https://gist.github.com/sanemat/6605029)
