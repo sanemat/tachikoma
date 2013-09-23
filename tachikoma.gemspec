@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Tachikoma::VERSION
   spec.authors       = ['sanemat']
   spec.email         = ['o.gata.ken@gmail.com']
-  spec.description   = %q{Interval pull requester with bundle update.}
+  spec.description   = %q{Interval pull requester with bundle/carton update.}
   spec.summary       = %q{Update gem frequently gets less pain. Let's doing bundle update as a habit!}
   spec.homepage      = 'https://github.com/sanemat/tachikoma'
   spec.license       = 'MIT'
