@@ -4,7 +4,7 @@
 [![Build Status](https://api.travis-ci.org/sanemat/tachikoma.png?branch=master)](https://travis-ci.org/sanemat/tachikoma)
 [![Code Climate](https://codeclimate.com/github/sanemat/tachikoma.png)](https://codeclimate.com/github/sanemat/tachikoma)
 
-Daily Pull Requester with bundle update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
+Daily Pull Requester with bundle/carton update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
 
 [![screen shot 2013-07-22 at 8 09 29 am](https://f.cloud.github.com/assets/75448/832475/b0ce829a-f25a-11e2-8984-521dbe7d838e.png)](https://vimeo.com/70733613)
 
