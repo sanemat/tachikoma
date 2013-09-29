@@ -2,9 +2,12 @@ require 'safe_yaml'
 require 'uri'
 require 'tachikoma'
 require 'octokit'
+require 'fileutils'
 
 module Tachikoma
   class Application
+    include FileUtils
+
     def self.run
       new.run
     end
