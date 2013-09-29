@@ -2,8 +2,12 @@ require 'tachikoma/application'
 
 namespace :tachikoma do
   desc 'run tachikoma'
-  task :run do
-    Tachikoma::Application.run
+  task :run_bundle do
+    Tachikoma::Application.run 'bundle'
+  end
+
+  task :run_carton do
+    Tachikoma::Application.run 'carton'
   end
 
   task :load do
@@ -13,9 +17,11 @@ namespace :tachikoma do
   end
 
   task :bundle do
+    Tachikoma::Application.run 'bundle'
   end
 
   task :carton do
+    Tachikoma::Application.run 'carton'
   end
 
   task :pull_request do

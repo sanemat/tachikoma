@@ -8,15 +8,14 @@ module Tachikoma
   class Application
     include FileUtils
 
-    def self.run
-      new.run
+    def self.run(strategy)
+      new.run(strategy)
     end
 
-    def run
+    def run(strategy)
       load
       fetch
-      bundle
-      # carton
+      send(strategy) if respond_to?(strategy)
       pull_request
     end
 
