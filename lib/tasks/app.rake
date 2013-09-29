@@ -1,3 +1,5 @@
+require 'tachikoma/application'
+
 namespace :tachikoma do
   desc 'run tachikoma'
   task :run do
