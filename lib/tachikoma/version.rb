@@ -1,4 +1,4 @@
 # Version of tachikoma
 module Tachikoma
-  VERSION = '3.0.10.beta'
+  VERSION = '4.0.0.beta'
 end
