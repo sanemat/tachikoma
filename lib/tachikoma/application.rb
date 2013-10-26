@@ -19,11 +19,6 @@ module Tachikoma
       pull_request
     end
 
-    def initialize
-      # deprecated, this will be removed v3.1.0
-      @default_timestamp_format = '%Y%m%d%H%M%S'
-    end
-
     def load
       @build_for = ENV['BUILD_FOR']
       @github_token = ENV[github_token_key(@build_for)]
@@ -48,7 +43,7 @@ module Tachikoma
       @type = @configure['type']
       @base_remote_branch = @configure['base_remote_branch']
       @authorized_url = authorized_url_with_type(@url, @type, @github_token, @github_account)
-      @timestamp_format = @configure['timestamp_format'] || @default_timestamp_format
+      @timestamp_format = @configure['timestamp_format']
       @readable_time = Time.now.utc.strftime(@timestamp_format)
       @parallel_option = bundler_parallel_option(Bundler::VERSION, @configure['bundler_parallel_number'])
 
