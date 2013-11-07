@@ -27,6 +27,10 @@ $ bundle exec tachikoma init
 2. Add YAML of repository you want to build by Tachikoma: Copy `data/bot-motoko-tachikoma.yaml` then edit `url` and `type`. to clone URL of your repository. Change `type` to `shared`, if you use shared repository model.
 3. Run below command in your shell:
 
+__Breaking backward compatibility__
+
+Below v3.1 Old API
+
 ```
 $ export BUILD_FOR=<your-repository-name-that-is-same-to-yaml-filename>
 $ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -38,7 +42,7 @@ If you use carton, then you use `tachikoma:carton` instead of `tachikoma:bundle`
 ### Build script example
 - [cloudbees.com dev@cloud: Above v4.0.0.beta](https://gist.github.com/sanemat/5859031/aa1966a46a7c00ed975b487f423c36b8ae5b976d)
 
-_Breaking backward compatibility_
+__Breaking backward compatibility__
 
 - [cloudbees.com dev@cloud: Below v3.1 Old API](https://gist.github.com/sanemat/5859031/31ac68266f89bc12760180d024874bd778f6946a)
 
