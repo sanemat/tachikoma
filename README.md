@@ -49,6 +49,24 @@ $ bundle exec rake tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pul
 
 If you use carton, then you use `tachikoma:carton` instead of `tachikoma:bundle`. (Require version >= 3.0.9)
 
+### Setting example
+[gist-mail setting](https://github.com/sanemat/bot-motoko-tachikoma/blob/a47ceb8b88f8b6da8028e5c0b641b8a84c9c3505/data/gist-mail.yaml)
+
+```yaml
+url:
+  'https://github.com/sanemat/gist-mail.git'
+frequency:
+  "every 1.day, :at => '6:30 am'"
+type:
+  'fork'
+language:
+  'ruby'
+version:
+  '2.0.0'
+pull_request_body:
+  ':ideograph_advantage::ideograph_advantage::ideograph_advantage:'
+```
+
 ### Build script example
 - [cloudbees.com dev@cloud: Above v4.0.0.beta](https://gist.github.com/sanemat/5859031/aa1966a46a7c00ed975b487f423c36b8ae5b976d)
 
