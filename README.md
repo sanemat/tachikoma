@@ -36,8 +36,11 @@ $ bundle exec rake tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pul
 If you use carton, then you use `tachikoma:carton` instead of `tachikoma:bundle`.
 
 ### Build script example
+- [cloudbees.com dev@cloud: Above v4.0.0.beta](https://gist.github.com/sanemat/5859031/aa1966a46a7c00ed975b487f423c36b8ae5b976d)
 
-- [cloudbees.com dev@cloud](https://gist.github.com/sanemat/5859031)
+_Breaking backward compatibility_
+
+- [cloudbees.com dev@cloud: Below v3.1 Old API](https://gist.github.com/sanemat/5859031/31ac68266f89bc12760180d024874bd778f6946a)
 
 ## Versioning
 
