@@ -71,7 +71,8 @@ by @kyanny
 [slide](https://speakerdeck.com/kyanny/continuous-gem-dependency-updating-with-jenkins-and-pull-request) _English/Japanese_
 
 ### Screencast
-- Tachikoma 10min(silent) [![screen shot 2013-07-22 at 8 09 29 am](https://f.cloud.github.com/assets/75448/832475/b0ce829a-f25a-11e2-8984-521dbe7d838e.png)](https://vimeo.com/70733613)
+- Tachikoma 10min (Below v3.1 - Old API) _Silent_
+[![screen shot 2013-07-22 at 8 09 29 am](https://f.cloud.github.com/assets/75448/832475/b0ce829a-f25a-11e2-8984-521dbe7d838e.png)](https://vimeo.com/70733613)
 
 ### Talk
 - [Updating Library Dependencies Off and On with Tachikoma](http://yapcasia.org/2013/talk/show/f7fe8ed4-1bcd-11e3-93a2-f74c6aeab6a4)
