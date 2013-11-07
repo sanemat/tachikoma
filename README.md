@@ -64,7 +64,11 @@ For more information on SemVer, please visit http://semver.org.
 ## Resources
 
 ### Concept
-- [Continuous gem dependency updating with Jenkins and Pull Request](http://rubykaigi.org/2013/talk/S72) at Rubykaigi2013 Talk by @kyanny [movie](http://vimeo.com/68300423), [slide](https://speakerdeck.com/kyanny/continuous-gem-dependency-updating-with-jenkins-and-pull-request)
+- [Continuous gem dependency updating with Jenkins and Pull Request](http://rubykaigi.org/2013/talk/S72)
+at Rubykaigi2013 Talk
+by @kyanny
+[movie](http://vimeo.com/68300423) _Japanese_
+[slide](https://speakerdeck.com/kyanny/continuous-gem-dependency-updating-with-jenkins-and-pull-request) _English/Japanese_
 
 ### Screencast
 - Tachikoma 10min(silent) [![screen shot 2013-07-22 at 8 09 29 am](https://f.cloud.github.com/assets/75448/832475/b0ce829a-f25a-11e2-8984-521dbe7d838e.png)](https://vimeo.com/70733613)
@@ -73,5 +77,5 @@ For more information on SemVer, please visit http://semver.org.
 - [Updating Library Dependencies Off and On with Tachikoma](http://yapcasia.org/2013/talk/show/f7fe8ed4-1bcd-11e3-93a2-f74c6aeab6a4)
 at YAPC::Asia Tokyo 2013 Lightning Talk
 by @sanemat
-[slide](https://gist.github.com/sanemat/6605029) _japanese_
-[video](http://www.youtube.com/watch?v=IAoJzxBzOok) _japanese_
+[slide](https://gist.github.com/sanemat/6605029) _Japanese_
+[video](http://www.youtube.com/watch?v=IAoJzxBzOok) _Japanese_
