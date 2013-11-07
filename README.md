@@ -50,7 +50,7 @@ $ bundle exec rake tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pul
 If you use carton, then you use `tachikoma:carton` instead of `tachikoma:bundle`. (Require version >= 3.0.9)
 
 ### Setting example
-[gist-mail setting](https://github.com/sanemat/bot-motoko-tachikoma/blob/a47ceb8b88f8b6da8028e5c0b641b8a84c9c3505/data/gist-mail.yaml)
+[gist-mail setting (data/gist-mail.yaml)](https://github.com/sanemat/bot-motoko-tachikoma/blob/a47ceb8b88f8b6da8028e5c0b641b8a84c9c3505/data/gist-mail.yaml)
 
 ```yaml
 url:
