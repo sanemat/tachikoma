@@ -117,5 +117,5 @@ by @sanemat
 [video](http://www.youtube.com/watch?v=IAoJzxBzOok) _Japanese_
 
 ### Article
-[tachikoma を使って毎日自動で bundle update - willnet.in](http://willnet.in/111)
+- [tachikoma を使って毎日自動で bundle update - willnet.in](http://willnet.in/111)
 by @willnet (Below v3.1 - Old API) _Japanese_
