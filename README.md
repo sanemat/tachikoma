@@ -27,17 +27,52 @@ $ bundle exec tachikoma init
 2. Add YAML of repository you want to build by Tachikoma: Copy `data/bot-motoko-tachikoma.yaml` then edit `url` and `type`. to clone URL of your repository. Change `type` to `shared`, if you use shared repository model.
 3. Run below command in your shell:
 
+Above v4.0.0.beta
+
+```
+$ export BUILD_FOR=<your-repository-name-that-is-same-to-yaml-filename>
+$ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$ bundle exec rake tachikoma:run_bundle
+```
+
+If you use carton, then you use `tachikoma:run_carton` instead of `tachikoma:run_bundle`.
+
+__Breaking backward compatibility__
+
+Below v3.1 Old API
+
 ```
 $ export BUILD_FOR=<your-repository-name-that-is-same-to-yaml-filename>
 $ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 $ bundle exec rake tachikoma:load tachikoma:fetch tachikoma:bundle tachikoma:pull_request
 ```
 
-If you use carton, then you use `tachikoma:carton` instead of `tachikoma:bundle`.
+If you use carton, then you use `tachikoma:carton` instead of `tachikoma:bundle`. (Require version >= 3.0.9)
+
+### Setting example
+[gist-mail setting (data/gist-mail.yaml)](https://github.com/sanemat/bot-motoko-tachikoma/blob/a47ceb8b88f8b6da8028e5c0b641b8a84c9c3505/data/gist-mail.yaml)
+
+```yaml
+url:
+  'https://github.com/sanemat/gist-mail.git'
+frequency:
+  "every 1.day, :at => '6:30 am'"
+type:
+  'fork'
+language:
+  'ruby'
+version:
+  '2.0.0'
+pull_request_body:
+  ':ideograph_advantage::ideograph_advantage::ideograph_advantage:'
+```
 
 ### Build script example
+- [cloudbees.com dev@cloud: Above v4.0.0.beta](https://gist.github.com/sanemat/5859031/aa1966a46a7c00ed975b487f423c36b8ae5b976d)
 
-- [cloudbees.com dev@cloud](https://gist.github.com/sanemat/5859031)
+__Breaking backward compatibility__
+
+- [cloudbees.com dev@cloud: Below v3.1 Old API](https://gist.github.com/sanemat/5859031/31ac68266f89bc12760180d024874bd778f6946a)
 
 ## Versioning
 
@@ -71,7 +106,8 @@ by @kyanny
 [slide](https://speakerdeck.com/kyanny/continuous-gem-dependency-updating-with-jenkins-and-pull-request) _English/Japanese_
 
 ### Screencast
-- Tachikoma 10min(silent) [![screen shot 2013-07-22 at 8 09 29 am](https://f.cloud.github.com/assets/75448/832475/b0ce829a-f25a-11e2-8984-521dbe7d838e.png)](https://vimeo.com/70733613)
+- Tachikoma 10min (Below v3.1 - Old API) _Silent_
+[![screen shot 2013-07-22 at 8 09 29 am](https://f.cloud.github.com/assets/75448/832475/b0ce829a-f25a-11e2-8984-521dbe7d838e.png)](https://vimeo.com/70733613)
 
 ### Talk
 - [Updating Library Dependencies Off and On with Tachikoma](http://yapcasia.org/2013/talk/show/f7fe8ed4-1bcd-11e3-93a2-f74c6aeab6a4)
@@ -79,3 +115,7 @@ at YAPC::Asia Tokyo 2013 Lightning Talk
 by @sanemat
 [slide](https://gist.github.com/sanemat/6605029) _Japanese_
 [video](http://www.youtube.com/watch?v=IAoJzxBzOok) _Japanese_
+
+### Article
+- [tachikoma を使って毎日自動で bundle update - willnet.in](http://willnet.in/111)
+by @willnet (Below v3.1 - Old API) _Japanese_
