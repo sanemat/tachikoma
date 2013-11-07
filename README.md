@@ -119,3 +119,5 @@ by @sanemat
 ### Article
 - [tachikoma を使って毎日自動で bundle update - willnet.in](http://willnet.in/111)
 by @willnet (Below v3.1 - Old API) _Japanese_
+- [Jenkins scheduled build Triggers with environment variable | 實松アウトプット](https://sanematsu.wordpress.com/2013/08/17/jenkins-scheduled-build-triggers-with-environment-variable/)
+by @sanemat _Japanese_
