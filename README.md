@@ -115,6 +115,10 @@ at YAPC::Asia Tokyo 2013 Lightning Talk
 by @sanemat
 [slide](https://gist.github.com/sanemat/6605029) _Japanese_
 [video](http://www.youtube.com/watch?v=IAoJzxBzOok) _Japanese_
+- Updating Library Dependencies Off and On with Tachikoma
+at RubyConf 2013 Lightning Talk
+by @sanemat
+[slide](https://gist.github.com/sanemat/7374944) _English_
 
 ### Article
 - [tachikoma を使って毎日自動で bundle update - willnet.in](http://willnet.in/111)
