@@ -6,7 +6,7 @@ describe Tachikoma do
     let(:repospath) { somewhere + '/repos' }
 
     before :each do
-      Dir.stub(:pwd).and_return(somewhere)
+      allow(Dir).to receive(:pwd).and_return(somewhere)
     end
 
     it { expect(described_class.root_path).to eq Pathname.new(somewhere) }
