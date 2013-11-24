@@ -22,26 +22,26 @@ YAML
 
   context 'if strategy is `bundle`' do
     before do
-      Tachikoma::Application.any_instance.stub(:load)
-      Tachikoma::Application.any_instance.stub(:fetch)
-      Tachikoma::Application.any_instance.stub(:pull_request)
+      allow_any_instance_of(Tachikoma::Application).to receive(:load)
+      allow_any_instance_of(Tachikoma::Application).to receive(:fetch)
+      allow_any_instance_of(Tachikoma::Application).to receive(:pull_request)
     end
 
     it 'should be called `bundle` method' do
-      Tachikoma::Application.any_instance.should_receive(:bundle)
+      expect_any_instance_of(Tachikoma::Application).to receive(:bundle)
       Tachikoma::Application.run 'bundle'
     end
   end
 
   context 'if strategy is `carton`' do
     before do
-      Tachikoma::Application.any_instance.stub(:load)
-      Tachikoma::Application.any_instance.stub(:fetch)
-      Tachikoma::Application.any_instance.stub(:pull_request)
+      allow_any_instance_of(Tachikoma::Application).to receive(:load)
+      allow_any_instance_of(Tachikoma::Application).to receive(:fetch)
+      allow_any_instance_of(Tachikoma::Application).to receive(:pull_request)
     end
 
     it 'should be called `carton` method' do
-      Tachikoma::Application.any_instance.should_receive(:carton)
+      expect_any_instance_of(Tachikoma::Application).to receive(:carton)
       Tachikoma::Application.run 'carton'
     end
   end
