@@ -76,7 +76,7 @@ module Tachikoma
           sh "git config user.name #{@commiter_name}"
           sh "git config user.email #{@commiter_email}"
           sh "git checkout -b feature/bundle-#{@readable_time} #{@base_remote_branch}"
-          sh "bundle --gemfile Gemfile --no-deployment --without nothing #{@parallel_option}"
+          sh "bundle --gemfile Gemfile --no-deployment --without nothing --path vendor/bundle #{@parallel_option}"
           sh 'bundle update'
           sh 'git add Gemfile.lock'
           sh %Q!git commit -m "Bundle update #{@readable_time}"! do; end # ignore exitstatus
