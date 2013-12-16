@@ -2,6 +2,8 @@
 
 Features:
 
+  - Support for older git versions (1.7.x) and OAuth (#58, @kenchan)
+
 ## 4.0.1 (2013-12-07)
 
 Features:
