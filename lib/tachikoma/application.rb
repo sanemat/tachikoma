@@ -116,9 +116,9 @@ module Tachikoma
       uri = URI.parse(fetch_url)
       case type
       when 'fork'
-        %Q!#{uri.scheme}://#{github_token}@#{uri.host}#{path_for_fork(uri.path, github_account)}!
+        %Q!#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{path_for_fork(uri.path, github_account)}!
       when 'shared', 'private'
-        "#{uri.scheme}://#{github_token}@#{uri.host}#{uri.path}"
+        "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
         raise "Invalid type #{type}"
       end
