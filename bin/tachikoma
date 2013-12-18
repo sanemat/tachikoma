@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+require 'bundler/setup'
+require 'tachikoma'
+require 'tachikoma/cli'
+
+Tachikoma::CLI.start
 =begin
 case ARGV[0]
 when 'init'
