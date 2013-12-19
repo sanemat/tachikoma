@@ -50,5 +50,21 @@ version:
       puts 'tachikoma init completed!'
       puts 'You might want to see README!'
     end
+
+    def self.help(shell, *)
+      list = printable_tasks
+
+      shell.say 'Commands:'
+      shell.print_table(list, indent: 2, truncate: true)
+      shell.say
+      class_options_help(shell)
+      shell.say <<-USAGE
+Tasks:
+  rake tachikoma:bundle        # bundle
+  rake tachikoma:fetch         # fetch
+  rake tachikoma:fetch_data    # fetch another `/data` directory from another location
+  rake tachikoma:pull_request  # pull_request
+USAGE
+    end
   end
 end
