@@ -13,12 +13,12 @@ namespace :tachikoma do
 
   # Deprecated: Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead
   task :load do
-    warn '[DEPRECATION] `tachikoma:load` is deprecated. Please use `tachikoma:run_bundle` or `tachikoma:run_carton instead.'
+    warn '[DEPRECATION] `tachikoma:load` is deleted. Please use `tachikoma:run_bundle` or `tachikoma:run_carton instead.'
   end
 
   # Deprecated: Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead
   task :fetch do
-    warn '[DEPRECATION] `tachikoma:fetch` is deprecated. Please use `tachikoma:run_bundle` or `tachikoma:run_carton instead.'
+    warn '[DEPRECATION] `tachikoma:fetch` is deleted. Please use `tachikoma:run_bundle` or `tachikoma:run_carton instead.'
   end
 
   # Deprecated: Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead
@@ -35,6 +35,6 @@ namespace :tachikoma do
 
   # Deprecated: Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead
   task :pull_request do
-    warn '[DEPRECATION] `tachikoma:pull_request` is deprecated. Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead.'
+    warn '[DEPRECATION] `tachikoma:pull_request` is deleted. Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead.'
   end
 end
