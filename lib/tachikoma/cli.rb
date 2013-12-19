@@ -60,10 +60,8 @@ version:
       class_options_help(shell)
       shell.say <<-USAGE
 Tasks:
-  rake tachikoma:bundle        # bundle
-  rake tachikoma:fetch         # fetch
-  rake tachikoma:fetch_data    # fetch another `/data` directory from another location
-  rake tachikoma:pull_request  # pull_request
+  rake tachikoma:run_bundle  # run tachikoma with bundle
+  rake tachikoma:run_carton  # run tachikoma with carton
 USAGE
     end
   end
