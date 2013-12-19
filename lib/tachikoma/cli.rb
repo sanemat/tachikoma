@@ -2,7 +2,7 @@ require 'thor'
 
 module Tachikoma
   class CLI < Thor
-    desc 'init', 'init tachikoma'
+    desc 'init', 'Initialize files'
     def init
       require 'fileutils'
       File.open('.gitignore', 'a') do |f|
