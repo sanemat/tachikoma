@@ -11,20 +11,30 @@ namespace :tachikoma do
     Tachikoma::Application.run 'carton'
   end
 
+  # Deprecated: Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead
   task :load do
+    warn '[DEPRECATION] `tachikoma:load` is deprecated. Please use `tachikoma:run_bundle` or `tachikoma:run_carton instead.'
   end
 
+  # Deprecated: Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead
   task :fetch do
+    warn '[DEPRECATION] `tachikoma:fetch` is deprecated. Please use `tachikoma:run_bundle` or `tachikoma:run_carton instead.'
   end
 
+  # Deprecated: Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead
   task :bundle do
+    warn '[DEPRECATION] `tachikoma:bundle` is deprecated. Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead.'
     Tachikoma::Application.run 'bundle'
   end
 
+  # Deprecated: Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead
   task :carton do
+    warn '[DEPRECATION] `tachikoma:carton` is deprecated. Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead.'
     Tachikoma::Application.run 'carton'
   end
 
+  # Deprecated: Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead
   task :pull_request do
+    warn '[DEPRECATION] `tachikoma:pull_request` is deprecated. Please use `tachikoma:run_bundle` or `tachikoma:run_carton` instead.'
   end
 end
