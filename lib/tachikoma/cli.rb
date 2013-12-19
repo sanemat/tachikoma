@@ -2,17 +2,18 @@ require 'thor'
 
 module Tachikoma
   class CLI < Thor
+    include Thor::Actions
+
     desc 'init', 'Initialize files'
     def init
       require 'fileutils'
-      File.open('.gitignore', 'a') do |f|
-        f << <<-EOS
-
-/repos/*
-!/repos/.gitkeep
-        EOS
+      if File.exist?('.gitignore')
+        append_to_file '.gitignore' do
+          File.read(File.join(self.class.source_root, '.gitignore'))
+        end
+      else
+        copy_file '.gitignore'
       end
-      puts 'appended .gitignore'
       File.open('Rakefile', 'a') do |f|
         f << <<-EOS
 
@@ -63,6 +64,10 @@ Tasks:
   rake tachikoma:run_bundle  # run tachikoma with bundle
   rake tachikoma:run_carton  # run tachikoma with carton
 USAGE
+    end
+
+    def self.source_root
+      File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
     end
   end
 end
