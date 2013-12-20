@@ -8,14 +8,17 @@ module Tachikoma
     def init
       require 'fileutils'
 
-      copy_file_lists = %w(
+      copy_or_append_file_lists = %w(
         .gitignore
         Rakefile
-        repos/.gitkeep
         data/__user_config__.yaml
-        data/bot-motoko-tachikoma.yaml)
+      )
+      copy_file_lists = %w(
+        repos/.gitkeep
+        data/bot-motoko-tachikoma.yaml
+      )
 
-      copy_file_lists.each do |target|
+      copy_or_append_file_lists.each do |target|
         if File.exist?(target)
           append_to_file target do
             File.read(File.join(self.class.source_root, target))
@@ -23,6 +26,10 @@ module Tachikoma
         else
           copy_file target
         end
+      end
+
+      copy_file_lists.each do |target|
+        copy_file target
       end
 
       puts 'tachikoma init completed!'
