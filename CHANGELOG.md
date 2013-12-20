@@ -3,6 +3,7 @@
 Features:
 
   - Support for older git versions (1.7.x) and OAuth (#58, @kenchan)
+  - Adjust rspec 3 syntax (#59, #60, @banyan)
 
 ## 4.0.1 (2013-12-07)
 
