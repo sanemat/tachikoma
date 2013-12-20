@@ -7,21 +7,17 @@ module Tachikoma
     desc 'init', 'Initialize files'
     def init
       require 'fileutils'
-      if File.exist?('.gitignore')
-        append_to_file '.gitignore' do
-          File.read(File.join(self.class.source_root, '.gitignore'))
-        end
-      else
-        copy_file '.gitignore'
-      end
-      File.open('Rakefile', 'a') do |f|
-        f << <<-EOS
 
-require 'bundler/setup'
-require 'tachikoma/tasks'
-        EOS
+      %w(.gitignore Rakefile).each do |target|
+        if File.exist?(target)
+          append_to_file target do
+            File.read(File.join(self.class.source_root, target))
+          end
+        else
+          copy_file target
+        end
       end
-      puts 'appended Rakefile'
+
       FileUtils.mkdir_p('data')
       puts 'created data/'
       File.open(File.join('data', '__user_config__.yaml'), 'w') do |f|
