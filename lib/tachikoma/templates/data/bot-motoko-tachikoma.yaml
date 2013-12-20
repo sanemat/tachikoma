@@ -1,0 +1,10 @@
+url:
+  'https://github.com/sanemat/bot-motoko-tachikoma.git'
+frequency:
+  "every 1.day, :at => '6:30 am'"
+type:
+  'fork'
+language:
+  'ruby'
+version:
+  '2.0.0'

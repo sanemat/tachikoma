@@ -8,7 +8,7 @@ module Tachikoma
     def init
       require 'fileutils'
 
-      %w(.gitignore Rakefile repos/.gitkeep).each do |target|
+      %w(.gitignore Rakefile repos/.gitkeep data/__user_config__.yaml data/bot-motoko-tachikoma.yaml).each do |target|
         if File.exist?(target)
           append_to_file target do
             File.read(File.join(self.class.source_root, target))
@@ -18,28 +18,6 @@ module Tachikoma
         end
       end
 
-      FileUtils.mkdir_p('data')
-      puts 'created data/'
-      File.open(File.join('data', '__user_config__.yaml'), 'w') do |f|
-        f << <<-EOS
-        EOS
-      end
-      puts 'created data/__user_config__.yaml'
-      File.open(File.join('data', 'bot-motoko-tachikoma.yaml'), 'w') do |f|
-        f << <<-EOS
-url:
-  'https://github.com/sanemat/bot-motoko-tachikoma.git'
-frequency:
-  "every 1.day, :at => '6:30 am'"
-type:
-  'fork'
-language:
-  'ruby'
-version:
-  '2.0.0'
-        EOS
-      end
-      puts 'created data/bot-motoko-tachikoma.yaml'
       puts 'tachikoma init completed!'
       puts 'You might want to see README!'
     end
