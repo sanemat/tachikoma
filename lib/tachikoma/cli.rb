@@ -8,7 +8,7 @@ module Tachikoma
     def init
       require 'fileutils'
 
-      %w(.gitignore Rakefile).each do |target|
+      %w(.gitignore Rakefile repos/.gitkeep).each do |target|
         if File.exist?(target)
           append_to_file target do
             File.read(File.join(self.class.source_root, target))
@@ -40,10 +40,6 @@ version:
         EOS
       end
       puts 'created data/bot-motoko-tachikoma.yaml'
-      FileUtils.mkdir_p('repos')
-      puts 'created repos/'
-      FileUtils.touch(File.join('repos', '.gitkeep'))
-      puts 'created repos/.gitkeep'
       puts 'tachikoma init completed!'
       puts 'You might want to see README!'
     end
