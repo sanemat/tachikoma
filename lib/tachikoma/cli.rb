@@ -4,6 +4,8 @@ module Tachikoma
   class CLI < Thor
     include Thor::Actions
 
+    map %w(-v --version) => :version
+
     desc 'init', 'Initialize files'
     def init
       require 'fileutils'
@@ -34,6 +36,11 @@ module Tachikoma
 
       puts 'tachikoma init completed!'
       puts 'You might want to see README!'
+    end
+
+    desc 'version', 'Display Tachikoma gem version'
+    def version
+      puts Tachikoma::VERSION
     end
 
     def self.help(shell, *)
