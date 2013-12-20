@@ -2,8 +2,9 @@ require 'spec_helper'
 require 'rake'
 require 'tachikoma/tasks'
 
-describe 'app.rake' do
-  describe 'tachikoma:pull_request' do
+# FIXME: This is not test against rake task.
+describe 'Tachikoma::Aplication' do
+  describe '#pull_request' do
     context 'when github returns 422 UnprocessableEntity' do
       before do
         allow(Octokit::Client).to receive_message_chain(:new, :create_pull_request).and_raise(Octokit::UnprocessableEntity)
