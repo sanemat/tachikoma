@@ -11,7 +11,7 @@ describe 'app.rake' do
 
       it 'should not raise Octokit::UnprocessableEntity error' do
         expect {
-          Rake::Task['tachikoma:pull_request'].invoke
+          Tachikoma::Application.new.pull_request
         }.to_not raise_error
       end
     end
