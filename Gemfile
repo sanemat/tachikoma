@@ -8,6 +8,7 @@ group :development, :test do
   gem 'rspec-core', git: 'https://github.com/rspec/rspec-core.git', branch: 'master'
   # https://github.com/rspec/rspec-mocks/pull/467
   gem 'rspec-mocks', git: 'https://github.com/rspec/rspec-mocks.git', branch: 'master'
+  gem 'fakefs', require: 'fakefs/safe'
 end
 
 gem 'oj'
