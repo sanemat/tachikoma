@@ -3,6 +3,7 @@
 Features:
 
   - Fix trailing slash in identify url (#71, @sanemat)
+  - Add Tachikoma::Exception (#73, @sanemat)
 
 ## 4.0.2 (2013-12-20)
 
