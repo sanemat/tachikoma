@@ -120,7 +120,7 @@ module Tachikoma
       when 'shared', 'private'
         "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
-        raise "Invalid type #{type}"
+        raise InvalidType, "Invalid type #{type}"
       end
     end
 
@@ -136,7 +136,7 @@ module Tachikoma
         uri = URI.parse(fetch_url)
         uri.path.sub(%r!/([^/]+)/.*!) { $1 }
       else
-        raise "Invalid type #{type}"
+        raise InvalidType, "Invalid type: #{type}"
       end
     end
 
