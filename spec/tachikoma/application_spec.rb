@@ -48,11 +48,31 @@ YAML
 
   describe '#bundler_parallel_option' do
     subject { described_class.new }
+
     context 'bundler does not support parallel' do
-      let (:bundler_version) { '1.3.5' }
-      let (:parallel_number) { 3 }
+      let(:bundler_version) { '1.3.5' }
+      let(:parallel_number) { 3 }
       it 'returns nil' do
         expect(subject.bundler_parallel_option(bundler_version, parallel_number)).to be_nil
+      end
+    end
+
+    context 'bundler supports parallel' do
+      let(:bundler_version) { '1.5.0' }
+
+      context 'parallel less than 1' do
+        let(:parallel_number) { 1 }
+        it 'returns nil' do
+          expect(subject.bundler_parallel_option(bundler_version, parallel_number)).to be_nil
+        end
+      end
+
+      context 'parallel above 1' do
+        let(:parallel_number) { 3 }
+        let(:parallel_option) { "--jobs=#{parallel_number}" }
+        it 'returns parallel option' do
+          expect(subject.bundler_parallel_option(bundler_version, parallel_number)).to eq parallel_option
+        end
       end
     end
   end
