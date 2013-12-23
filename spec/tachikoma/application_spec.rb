@@ -91,7 +91,7 @@ YAML
     end
     context 'https with trail slash' do
       let(:url) { 'https://github.com/example1/example2/' }
-      it { pending; expect(subject.repository_identity(url)).to eq identity }
+      it { expect(subject.repository_identity(url)).to eq identity }
     end
   end
 end

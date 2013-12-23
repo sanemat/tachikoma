@@ -141,7 +141,7 @@ module Tachikoma
     end
 
     def repository_identity(url)
-      %r!((?:[^/]*?)/(?:[^/]*?))(?:\.git)?$!.match(url)[1]
+      %r!((?:[^/]*?)/(?:[^/]*?))(?:\.git|/)?$!.match(url)[1]
     end
 
     def bundler_parallel_option(bundler_version, parallel_number)
