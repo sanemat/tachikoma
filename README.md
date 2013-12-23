@@ -3,6 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/tachikoma.png)](http://badge.fury.io/rb/tachikoma)
 [![Build Status](https://api.travis-ci.org/sanemat/tachikoma.png?branch=master)](https://travis-ci.org/sanemat/tachikoma)
 [![Code Climate](https://codeclimate.com/github/sanemat/tachikoma.png)](https://codeclimate.com/github/sanemat/tachikoma)
+[![Coverage Status](https://coveralls.io/repos/sanemat/tachikoma/badge.png?branch=master)](https://coveralls.io/r/sanemat/tachikoma)
 
 Daily Pull Requester with bundle/carton update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
 
