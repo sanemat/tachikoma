@@ -76,4 +76,22 @@ YAML
       end
     end
   end
+
+  describe '#repository_identity' do
+    subject { described_class.new }
+    let(:identity) { 'example1/example2' }
+
+    context 'https with .git' do
+      let(:url) { 'https://github.com/example1/example2.git' }
+      it { expect(subject.repository_identity(url)).to eq identity }
+    end
+    context 'https without .git' do
+      let(:url) { 'https://github.com/example1/example2' }
+      it { expect(subject.repository_identity(url)).to eq identity }
+    end
+    context 'https with trail slash' do
+      let(:url) { 'https://github.com/example1/example2/' }
+      it { pending; expect(subject.repository_identity(url)).to eq identity }
+    end
+  end
 end
