@@ -133,8 +133,7 @@ module Tachikoma
       when 'fork'
         github_account
       when 'shared', 'private'
-        uri = URI.parse(fetch_url)
-        uri.path.sub(%r!/([^/]+)/.*!) { $1 }
+        URI.parse(fetch_url).path.split('/', 3)[1]
       else
         raise InvalidType, "Invalid type: #{type}"
       end
