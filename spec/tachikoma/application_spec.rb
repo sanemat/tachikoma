@@ -94,4 +94,31 @@ YAML
       it { expect(subject.repository_identity(url)).to eq identity }
     end
   end
+
+  describe '#target_repository_user' do
+    subject { described_class.new }
+    let(:url) { 'https://github.com/example/example2.git' }
+    let(:repos_user) { 'example' }
+    let(:github_user) { 'me' }
+
+    context 'valid type' do
+      context 'fork' do
+        let(:type) { 'fork' }
+        it { expect(subject.target_repository_user(type, url, github_user)).to eq github_user }
+      end
+      context 'shared' do
+        let(:type) { 'shared' }
+        it { expect(subject.target_repository_user(type, url, github_user)).to eq repos_user }
+      end
+      context 'private' do
+        let(:type) { 'private' }
+        it { expect(subject.target_repository_user(type, url, github_user)).to eq repos_user }
+      end
+    end
+
+    context 'invalid type' do
+      let(:type) { 'invalid' }
+      it { expect { subject.target_repository_user(type, url, github_user) }.to raise_error(InvalidType) }
+    end
+  end
 end
