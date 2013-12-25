@@ -121,4 +121,18 @@ YAML
       it { expect { subject.target_repository_user(type, url, github_user) }.to raise_error(InvalidType) }
     end
   end
+
+  describe '#authorized_url_with_type' do
+    subject { described_class.new }
+    context 'valid type' do
+      context 'fork' do
+        let(:base_url) { 'https://github.com/can-not-write/example2.git' }
+        let(:account) { 'readonly' }
+        let(:token) { 'token' }
+        let(:type) { 'fork' }
+        let(:compare_authorized_url) { 'https://token:x-oauth-basic@github.com/readonly/example2.git' }
+        it { expect(subject.authorized_url_with_type(base_url, type, token, account)).to eq compare_authorized_url }
+      end
+    end
+  end
 end
