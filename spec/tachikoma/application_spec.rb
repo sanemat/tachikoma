@@ -150,5 +150,13 @@ YAML
         it { expect(subject.authorized_url_with_type(base_url, type, token, account)).to eq compare_authorized_url }
       end
     end
+    context 'invalid type' do
+      let(:base_url) { 'https://github.com/writable/example2.git' }
+      let(:account) { 'me' }
+      let(:token) { 'token' }
+      let(:type) { 'invalid' }
+      let(:compare_authorized_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
+      it { expect { subject.authorized_url_with_type(base_url, type, token, account) }.to raise_error(InvalidType) }
+    end
   end
 end
