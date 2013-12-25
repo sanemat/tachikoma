@@ -123,7 +123,7 @@ YAML
   end
 
   describe '#authorized_compare_url_with_type' do
-    subject { described_class.new }
+    subject { described_class.new.authorized_compare_url_with_type(base_url, type, token, account) }
     let(:token) { 'token' }
 
     context 'valid type' do
@@ -132,21 +132,21 @@ YAML
         let(:account) { 'readonly' }
         let(:type) { 'fork' }
         let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/readonly/example2.git' }
-        it { expect(subject.authorized_compare_url_with_type(base_url, type, token, account)).to eq authorized_compare_url }
+        it { expect(subject).to eq authorized_compare_url }
       end
       context 'shared' do
         let(:base_url) { 'https://github.com/writable/example2.git' }
         let(:account) { 'me' }
         let(:type) { 'shared' }
         let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
-        it { expect(subject.authorized_compare_url_with_type(base_url, type, token, account)).to eq authorized_compare_url }
+        it { expect(subject).to eq authorized_compare_url }
       end
       context 'private' do
         let(:base_url) { 'https://github.com/writable/example2.git' }
         let(:account) { 'me' }
         let(:type) { 'private' }
         let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
-        it { expect(subject.authorized_compare_url_with_type(base_url, type, token, account)).to eq authorized_compare_url }
+        it { expect(subject).to eq authorized_compare_url }
       end
     end
 
@@ -155,7 +155,7 @@ YAML
       let(:account) { 'me' }
       let(:type) { 'invalid' }
       let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
-      it { expect { subject.authorized_compare_url_with_type(base_url, type, token, account) }.to raise_error(InvalidType) }
+      it { expect { subject }.to raise_error(InvalidType) }
     end
   end
 end
