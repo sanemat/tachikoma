@@ -132,21 +132,21 @@ YAML
         let(:account) { 'readonly' }
         let(:type) { 'fork' }
         let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/readonly/example2.git' }
-        it { expect(subject).to eq authorized_compare_url }
+        it { is_expected.to eq authorized_compare_url }
       end
       context 'shared' do
         let(:base_url) { 'https://github.com/writable/example2.git' }
         let(:account) { 'me' }
         let(:type) { 'shared' }
         let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
-        it { expect(subject).to eq authorized_compare_url }
+        it { is_expected.to eq authorized_compare_url }
       end
       context 'private' do
         let(:base_url) { 'https://github.com/writable/example2.git' }
         let(:account) { 'me' }
         let(:type) { 'private' }
         let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
-        it { expect(subject).to eq authorized_compare_url }
+        it { is_expected.to eq authorized_compare_url }
       end
     end
 
@@ -155,6 +155,7 @@ YAML
       let(:account) { 'me' }
       let(:type) { 'invalid' }
       let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
+      # FIXME: Use `is_expected` ?
       it { expect { subject }.to raise_error(InvalidType) }
     end
   end
