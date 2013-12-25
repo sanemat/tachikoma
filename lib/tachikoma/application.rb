@@ -114,7 +114,10 @@ module Tachikoma
       case type
       when 'fork'
         %Q!#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{path_for_fork(uri.path, github_account)}!
-      when 'shared', 'private'
+      when 'shared'
+        "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
+      when 'private'
+        warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
         "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
         raise InvalidType, "Invalid type #{type}"
@@ -124,7 +127,10 @@ module Tachikoma
     def authorized_base_url_with_type(fetch_url, type, github_token, github_account)
       uri = URI.parse(fetch_url)
       case type
-      when 'fork', 'shared', 'private'
+      when 'fork', 'shared'
+        "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
+      when 'private'
+        warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
         "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
         raise InvalidType, "Invalid type #{type}"
@@ -139,7 +145,10 @@ module Tachikoma
       case type
       when 'fork'
         github_account
-      when 'shared', 'private'
+      when 'shared'
+        URI.parse(fetch_url).path.split('/', 3)[1]
+      when 'private'
+        warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
         URI.parse(fetch_url).path.split('/', 3)[1]
       else
         raise InvalidType, "Invalid type: #{type}"
