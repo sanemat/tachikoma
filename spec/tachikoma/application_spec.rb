@@ -154,7 +154,6 @@ YAML
       let(:base_url) { 'https://github.com/writable/example2.git' }
       let(:account) { 'me' }
       let(:type) { 'invalid' }
-      let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
       # FIXME: Use `is_expected` ?
       it { expect { subject }.to raise_error(InvalidType) }
     end
