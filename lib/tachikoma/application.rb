@@ -43,6 +43,7 @@ module Tachikoma
       @type = @configure['type']
       @base_remote_branch = @configure['base_remote_branch']
       @authorized_compare_url = authorized_compare_url_with_type(@url, @type, @github_token, @github_account)
+      @authorized_base_url = authorized_base_url_with_type(@url, @type, @github_token, @github_account)
       @timestamp_format = @configure['timestamp_format']
       @readable_time = Time.now.utc.strftime(@timestamp_format)
       @parallel_option = bundler_parallel_option(Bundler::VERSION, @configure['bundler_parallel_number'])
@@ -62,11 +63,7 @@ module Tachikoma
 
     def fetch
       clean
-      if @type == 'private'
-        sh "git clone #{@authorized_compare_url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
-      else
-        sh "git clone #{@url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
-      end
+      sh "git clone #{@authorized_base_url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
     end
 
     def bundle
@@ -118,6 +115,16 @@ module Tachikoma
       when 'fork'
         %Q!#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{path_for_fork(uri.path, github_account)}!
       when 'shared', 'private'
+        "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
+      else
+        raise InvalidType, "Invalid type #{type}"
+      end
+    end
+
+    def authorized_base_url_with_type(fetch_url, type, github_token, github_account)
+      uri = URI.parse(fetch_url)
+      case type
+      when 'fork', 'shared', 'private'
         "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
         raise InvalidType, "Invalid type #{type}"
