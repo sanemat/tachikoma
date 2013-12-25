@@ -159,4 +159,41 @@ YAML
       it { expect { subject }.to raise_error(InvalidType) }
     end
   end
+
+  describe '#authorized_base_url_with_type' do
+    subject { described_class.new.authorized_base_url_with_type(base_url, type, token, account) }
+    let(:token) { 'token' }
+
+    context 'valid type' do
+      context 'fork' do
+        let(:base_url) { 'https://github.com/can-not-write/example2.git' }
+        let(:account) { 'readonly' }
+        let(:type) { 'fork' }
+        let(:authorized_base_url) { 'https://token:x-oauth-basic@github.com/can-not-write/example2.git' }
+        it { is_expected.to eq authorized_base_url }
+      end
+      context 'shared' do
+        let(:base_url) { 'https://github.com/writable/example2.git' }
+        let(:account) { 'me' }
+        let(:type) { 'shared' }
+        let(:authorized_base_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
+        it { is_expected.to eq authorized_base_url }
+      end
+      context 'private' do
+        let(:base_url) { 'https://github.com/writable/example2.git' }
+        let(:account) { 'me' }
+        let(:type) { 'private' }
+        let(:authorized_base_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
+        it { is_expected.to eq authorized_base_url }
+      end
+    end
+
+    context 'invalid type' do
+      let(:base_url) { 'https://github.com/writable/example2.git' }
+      let(:account) { 'me' }
+      let(:type) { 'invalid' }
+      # FIXME: Use `is_expected` ?
+      it { expect { subject }.to raise_error(InvalidType) }
+    end
+  end
 end
