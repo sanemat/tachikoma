@@ -120,6 +120,7 @@ by @sanemat
 at RubyConf 2013 Lightning Talk
 by @sanemat
 [slide](https://gist.github.com/sanemat/7374944) _English_
+[video](http://www.youtube.com/watch?v=gJOkpP__dY4#t=5393) _English_
 
 ### Article
 - [tachikoma を使って毎日自動で bundle update - willnet.in](http://willnet.in/111)
