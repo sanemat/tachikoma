@@ -4,6 +4,8 @@ Features:
 
   - Fix trailing slash in identify url (#71, @sanemat)
   - Add Tachikoma::Exception (#73, @sanemat)
+  - All `git clone` and `git push` requests use github authentication token (#77, @sanemat)
+  - Deprecate `type: private` (#77, @sanemat)
 
 ## 4.0.2 (2013-12-20)
 
