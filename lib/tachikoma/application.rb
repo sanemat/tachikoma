@@ -42,7 +42,8 @@ module Tachikoma
       @url = @configure['url']
       @type = @configure['type']
       @base_remote_branch = @configure['base_remote_branch']
-      @authorized_url = authorized_url_with_type(@url, @type, @github_token, @github_account)
+      @authorized_compare_url = authorized_compare_url_with_type(@url, @type, @github_token, @github_account)
+      @authorized_base_url = authorized_base_url_with_type(@url, @type, @github_token, @github_account)
       @timestamp_format = @configure['timestamp_format']
       @readable_time = Time.now.utc.strftime(@timestamp_format)
       @parallel_option = bundler_parallel_option(Bundler::VERSION, @configure['bundler_parallel_number'])
@@ -62,11 +63,7 @@ module Tachikoma
 
     def fetch
       clean
-      if @type == 'private'
-        sh "git clone #{@authorized_url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
-      else
-        sh "git clone #{@url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
-      end
+      sh "git clone #{@authorized_base_url} #{Tachikoma.repos_path.to_s}/#{@build_for}"
     end
 
     def bundle
@@ -80,7 +77,7 @@ module Tachikoma
           sh 'bundle update'
           sh 'git add Gemfile.lock'
           sh %Q!git commit -m "Bundle update #{@readable_time}"! do; end # ignore exitstatus
-          sh "git push #{@authorized_url} feature/bundle-#{@readable_time}"
+          sh "git push #{@authorized_compare_url} feature/bundle-#{@readable_time}"
         end
       end
     end
@@ -95,7 +92,7 @@ module Tachikoma
         sh 'git add carton.lock' if File.exist?('carton.lock')
         sh 'git add cpanfile.snapshot' if File.exist?('cpanfile.snapshot')
         sh %Q!git commit -m "Carton update #{@readable_time}"! do; end # ignore exitstatus
-        sh "git push #{@authorized_url} feature/carton-#{@readable_time}"
+        sh "git push #{@authorized_compare_url} feature/carton-#{@readable_time}"
       end
     end
 
@@ -112,12 +109,28 @@ module Tachikoma
       "TOKEN_#{build_for}".gsub(/-/, '_').upcase
     end
 
-    def authorized_url_with_type(fetch_url, type, github_token, github_account)
+    def authorized_compare_url_with_type(fetch_url, type, github_token, github_account)
       uri = URI.parse(fetch_url)
       case type
       when 'fork'
         %Q!#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{path_for_fork(uri.path, github_account)}!
-      when 'shared', 'private'
+      when 'shared'
+        "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
+      when 'private'
+        warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
+        "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
+      else
+        raise InvalidType, "Invalid type #{type}"
+      end
+    end
+
+    def authorized_base_url_with_type(fetch_url, type, github_token, github_account)
+      uri = URI.parse(fetch_url)
+      case type
+      when 'fork', 'shared'
+        "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
+      when 'private'
+        warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
         "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
         raise InvalidType, "Invalid type #{type}"
@@ -132,7 +145,10 @@ module Tachikoma
       case type
       when 'fork'
         github_account
-      when 'shared', 'private'
+      when 'shared'
+        URI.parse(fetch_url).path.split('/', 3)[1]
+      when 'private'
+        warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
         URI.parse(fetch_url).path.split('/', 3)[1]
       else
         raise InvalidType, "Invalid type: #{type}"
