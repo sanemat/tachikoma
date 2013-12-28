@@ -4,7 +4,7 @@ require 'fileutils'
 
 describe Tachikoma::Application do
   before :all do
-    ENV.update({ 'BUILD_FOR' => 'test' })
+    ENV.update('BUILD_FOR' => 'test')
     open(File.join(File.dirname(__FILE__), '..', '..', 'data', 'test.yaml'), 'w') { |f|
       f.puts <<YAML
 url:
@@ -16,7 +16,7 @@ YAML
   end
 
   after :all do
-    ENV.update({ 'BUILD_FOR' => nil })
+    ENV.update('BUILD_FOR' => nil)
     FileUtils.rm_f File.join(File.dirname(__FILE__), '..', '..', 'data', 'test.yaml')
   end
 
