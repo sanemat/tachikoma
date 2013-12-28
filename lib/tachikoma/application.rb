@@ -98,11 +98,9 @@ module Tachikoma
     end
 
     def pull_request
-      begin
-        @client = Octokit::Client.new access_token: @github_token
-        @client.create_pull_request(@pull_request_url, @pull_request_base, @pull_request_head, @pull_request_title, @pull_request_body)
-      rescue Octokit::UnprocessableEntity
-      end
+      @client = Octokit::Client.new access_token: @github_token
+      @client.create_pull_request(@pull_request_url, @pull_request_base, @pull_request_head, @pull_request_title, @pull_request_body)
+    rescue Octokit::UnprocessableEntity
     end
 
     # build_for = fenix-knight, github_token_key = TOKEN_FENIX_KNIGHT
