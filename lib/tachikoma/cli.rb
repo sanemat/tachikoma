@@ -1,6 +1,7 @@
 require 'thor'
 
 module Tachikoma
+  # Command for Tachikoma
   class CLI < Thor
     include Thor::Actions
 
