@@ -5,6 +5,7 @@ require 'octokit'
 require 'fileutils'
 
 module Tachikoma
+  # Main logic of Tachikoma
   class Application
     include FileUtils
 
