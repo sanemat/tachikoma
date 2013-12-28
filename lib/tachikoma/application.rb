@@ -119,7 +119,7 @@ module Tachikoma
         warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
         "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
-        raise InvalidType, "Invalid type #{type}"
+        fail InvalidType, "Invalid type #{type}"
       end
     end
 
@@ -132,7 +132,7 @@ module Tachikoma
         warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
         "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
-        raise InvalidType, "Invalid type #{type}"
+        fail InvalidType, "Invalid type #{type}"
       end
     end
 
@@ -150,7 +150,7 @@ module Tachikoma
         warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
         URI.parse(fetch_url).path.split('/', 3)[1]
       else
-        raise InvalidType, "Invalid type: #{type}"
+        fail InvalidType, "Invalid type: #{type}"
       end
     end
 
