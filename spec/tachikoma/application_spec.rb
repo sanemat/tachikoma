@@ -46,6 +46,19 @@ YAML
     end
   end
 
+  context 'if strategy is `none`' do
+    before do
+      allow_any_instance_of(Tachikoma::Application).to receive(:load)
+      allow_any_instance_of(Tachikoma::Application).to receive(:fetch)
+      allow_any_instance_of(Tachikoma::Application).to receive(:pull_request)
+    end
+
+    it 'should be called `none` method' do
+      expect_any_instance_of(Tachikoma::Application).to receive(:none)
+      Tachikoma::Application.run 'none'
+    end
+  end
+
   describe '#bundler_parallel_option' do
     subject { described_class.new }
 

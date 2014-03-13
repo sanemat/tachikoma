@@ -97,6 +97,16 @@ module Tachikoma
       end
     end
 
+    def none
+      Dir.chdir("#{Tachikoma.repos_path.to_s}/#{@build_for}") do
+        sh "git config user.name #{@commiter_name}"
+        sh "git config user.email #{@commiter_email}"
+        sh "git checkout -b feature/none-#{@readable_time} #{@base_remote_branch}"
+        sh %Q!git commit --allow-empty -m "None update #{@readable_time}"! do; end # ignore exitstatus
+        sh "git push #{@authorized_compare_url} feature/none-#{@readable_time}"
+      end
+    end
+
     def pull_request
       @client = Octokit::Client.new access_token: @github_token
       @client.create_pull_request(@pull_request_url, @pull_request_base, @pull_request_head, @pull_request_title, @pull_request_body)
