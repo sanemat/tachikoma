@@ -1,6 +1,7 @@
 ## 4.0.4
 
 Features:
+  - Add :none strategy (#85, @sanemat)
 
 ## 4.0.3 (2013-12-27)
 
