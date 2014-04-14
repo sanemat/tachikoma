@@ -1,4 +1,4 @@
-## 4.0.4
+## 4.0.4 (2014-04-14)
 
 Features:
   - Add :none strategy (#85, @sanemat)
