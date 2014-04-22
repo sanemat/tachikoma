@@ -1,5 +1,7 @@
-## 4.0.5
+## 4.1.0
 
+Features:
+  - Remove deprecated code (#88, @sanemat)
 
 ## 4.0.4 (2014-04-14)
 
