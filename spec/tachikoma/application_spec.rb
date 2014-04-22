@@ -123,10 +123,6 @@ YAML
         let(:type) { 'shared' }
         it { expect(subject.target_repository_user(type, url, github_user)).to eq repos_user }
       end
-      context 'private' do
-        let(:type) { 'private' }
-        it { expect(subject.target_repository_user(type, url, github_user)).to eq repos_user }
-      end
     end
 
     context 'invalid type' do
@@ -151,13 +147,6 @@ YAML
         let(:base_url) { 'https://github.com/writable/example2.git' }
         let(:account) { 'me' }
         let(:type) { 'shared' }
-        let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
-        it { is_expected.to eq authorized_compare_url }
-      end
-      context 'private' do
-        let(:base_url) { 'https://github.com/writable/example2.git' }
-        let(:account) { 'me' }
-        let(:type) { 'private' }
         let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
         it { is_expected.to eq authorized_compare_url }
       end
@@ -188,13 +177,6 @@ YAML
         let(:base_url) { 'https://github.com/writable/example2.git' }
         let(:account) { 'me' }
         let(:type) { 'shared' }
-        let(:authorized_base_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
-        it { is_expected.to eq authorized_base_url }
-      end
-      context 'private' do
-        let(:base_url) { 'https://github.com/writable/example2.git' }
-        let(:account) { 'me' }
-        let(:type) { 'private' }
         let(:authorized_base_url) { 'https://token:x-oauth-basic@github.com/writable/example2.git' }
         it { is_expected.to eq authorized_base_url }
       end
