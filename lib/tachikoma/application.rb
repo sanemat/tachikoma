@@ -125,9 +125,6 @@ module Tachikoma
         %Q!#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{path_for_fork(uri.path, github_account)}!
       when 'shared'
         "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
-      when 'private'
-        warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
-        "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
         fail InvalidType, "Invalid type #{type}"
       end
@@ -137,9 +134,6 @@ module Tachikoma
       uri = URI.parse(fetch_url)
       case type
       when 'fork', 'shared'
-        "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
-      when 'private'
-        warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
         "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
         fail InvalidType, "Invalid type #{type}"
@@ -155,9 +149,6 @@ module Tachikoma
       when 'fork'
         github_account
       when 'shared'
-        URI.parse(fetch_url).path.split('/', 3)[1]
-      when 'private'
-        warn '[DEPRECATION] `type: private` is deprecated. Please use `type: fork` or `type: shared` instead.'
         URI.parse(fetch_url).path.split('/', 3)[1]
       else
         fail InvalidType, "Invalid type: #{type}"
