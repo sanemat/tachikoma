@@ -20,11 +20,11 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'safe_yaml'
   spec.add_dependency 'rake'
-  spec.add_dependency 'octokit', '>= 3.0', '< 3.2'
+  spec.add_dependency 'octokit', '>= 3.2', '< 3.3'
   spec.add_dependency 'json'
   spec.add_dependency 'thor'
 
   spec.add_development_dependency 'bundler', '>= 1.3', '< 1.7'
   spec.add_development_dependency 'dotenv'
-  spec.add_development_dependency 'rspec', '>= 3.0.0.beta2'
+  spec.add_development_dependency 'rspec', '>= 3.0.0'
 end
