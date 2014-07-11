@@ -1,12 +1,12 @@
 inherit_from: rubocop-todo.yml
 AllCops:
-  Includes:
+  Include:
     - Rakefile
     - Gemfile
     - tachikoma.gemspec
     - bin/**
     - lib/**/*.rake
-  Excludes:
+  Exclude:
     - pkg/**
     - repos/**
     - vendor/**
