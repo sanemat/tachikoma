@@ -73,7 +73,7 @@ module Tachikoma
           sh %Q(ruby -i -pe '$_.gsub! /^ruby/, "#ruby"' Gemfile)
           sh "git config user.name #{@commiter_name}"
           sh "git config user.email #{@commiter_email}"
-          sh "git checkout -b feature/bundle-#{@readable_time} #{@base_remote_branch}"
+          sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
           sh "bundle --gemfile Gemfile --no-deployment --without nothing --path vendor/bundle #{@parallel_option}"
           sh 'bundle update'
           sh 'git add Gemfile.lock'
@@ -87,7 +87,7 @@ module Tachikoma
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh "git config user.name #{@commiter_name}"
         sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b feature/carton-#{@readable_time} #{@base_remote_branch}"
+        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
         sh 'carton install'
         sh 'carton update'
         sh 'git add carton.lock' if File.exist?('carton.lock')
@@ -101,7 +101,7 @@ module Tachikoma
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh "git config user.name #{@commiter_name}"
         sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b feature/none-#{@readable_time} #{@base_remote_branch}"
+        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
         sh %Q(git commit --allow-empty -m "None update #{@readable_time}") do; end # ignore exitstatus
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
