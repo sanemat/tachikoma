@@ -53,7 +53,7 @@ module Tachikoma
       @pull_request_url = repository_identity(@url)
       @pull_request_body = @configure['pull_request_body']
       @pull_request_base = @configure['pull_request_base']
-      @pull_request_head = "#{@target_head}:feature/bundle-#{@readable_time}"
+      @pull_request_head = "#{@target_head}:tachikoma/update-#{@readable_time}"
       @pull_request_title = "Bundle update #{@readable_time}"
     end
 
@@ -78,7 +78,7 @@ module Tachikoma
           sh 'bundle update'
           sh 'git add Gemfile.lock'
           sh %Q(git commit -m "Bundle update #{@readable_time}") do; end # ignore exitstatus
-          sh "git push #{@authorized_compare_url} feature/bundle-#{@readable_time}"
+          sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
         end
       end
     end
@@ -93,7 +93,7 @@ module Tachikoma
         sh 'git add carton.lock' if File.exist?('carton.lock')
         sh 'git add cpanfile.snapshot' if File.exist?('cpanfile.snapshot')
         sh %Q(git commit -m "Carton update #{@readable_time}") do; end # ignore exitstatus
-        sh "git push #{@authorized_compare_url} feature/carton-#{@readable_time}"
+        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
 
@@ -103,7 +103,7 @@ module Tachikoma
         sh "git config user.email #{@commiter_email}"
         sh "git checkout -b feature/none-#{@readable_time} #{@base_remote_branch}"
         sh %Q(git commit --allow-empty -m "None update #{@readable_time}") do; end # ignore exitstatus
-        sh "git push #{@authorized_compare_url} feature/none-#{@readable_time}"
+        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
 
