@@ -2,6 +2,7 @@
 
 Features:
   - Remove deprecated code (#88, @sanemat)
+  - Enable pull request with carton/none strategies :scream: (#95, @sanemat)
 
 ## 4.0.4 (2014-04-14)
 
