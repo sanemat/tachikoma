@@ -54,7 +54,7 @@ module Tachikoma
       @pull_request_body = @configure['pull_request_body']
       @pull_request_base = @configure['pull_request_base']
       @pull_request_head = "#{@target_head}:tachikoma/update-#{@readable_time}"
-      @pull_request_title = "Bundle update #{@readable_time}"
+      @pull_request_title = "Exec tachikoma update #{@readable_time}"
     end
 
     def clean
