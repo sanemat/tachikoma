@@ -5,7 +5,7 @@
 [![Code Climate](http://img.shields.io/codeclimate/github/sanemat/tachikoma.svg?style=flat)](https://codeclimate.com/github/sanemat/tachikoma)
 [![Coverage Status](http://img.shields.io/coveralls/sanemat/tachikoma/master.svg?style=flat)](https://coveralls.io/r/sanemat/tachikoma)
 
-Interval Pull Requester with bundle/carton/none update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
+Interval Pull Requester with bundler/carton/david/none update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
 
 ![tachikoma](https://gist.github.com/sanemat/6605029/raw/ztachikoma-demo5.gif 'tachikoma')
 ![tachikoma](https://gist.github.com/sanemat/6605029/raw/ztachikoma-demo6.gif 'tachikoma')
