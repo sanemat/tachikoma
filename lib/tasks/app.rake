@@ -10,4 +10,14 @@ namespace :tachikoma do
   task :run_carton do
     Tachikoma::Application.run 'carton'
   end
+
+  desc 'run tachikoma with none'
+  task :run_none do
+    Tachikoma::Application.run 'none'
+  end
+
+  desc 'run tachikoma with david'
+  task :run_david do
+    Tachikoma::Application.run 'david'
+  end
 end
