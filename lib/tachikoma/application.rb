@@ -112,7 +112,9 @@ module Tachikoma
         sh "git config user.name #{@commiter_name}"
         sh "git config user.email #{@commiter_email}"
         sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh %Q(git commit --allow-empty -m "None update #{@readable_time}") do; end # ignore exitstatus
+        sh 'david update --warn404'
+        sh 'git add package.json'
+        sh %Q(git commit -m "David update #{@readable_time}") do; end # ignore exitstatus
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
