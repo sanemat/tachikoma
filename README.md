@@ -34,7 +34,17 @@ $ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxx
 $ bundle exec rake tachikoma:run_bundle
 ```
 
+### Strategies
+
+You can use these strategies:
+
+- Bundler (Ruby)
+- Carton (Perl)
+- David (Node.js)
+- None (without strategy)
+
 If you use carton, then you use `tachikoma:run_carton` instead of `tachikoma:run_bundle`.
+You can also use `tachikoma:run_none` and `tachikoma:run_david`.
 
 ### Setting example
 [gist-mail setting (data/gist-mail.yaml)](https://github.com/sanemat/bot-motoko-tachikoma/blob/a47ceb8b88f8b6da8028e5c0b641b8a84c9c3505/data/gist-mail.yaml)
