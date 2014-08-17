@@ -107,6 +107,18 @@ module Tachikoma
       end
     end
 
+    def david
+      Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
+        sh "git config user.name #{@commiter_name}"
+        sh "git config user.email #{@commiter_email}"
+        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
+        sh 'david update --warn404'
+        sh 'git add package.json'
+        sh %Q(git commit -m "David update #{@readable_time}") do; end # ignore exitstatus
+        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+      end
+    end
+
     def pull_request
       @client = Octokit::Client.new access_token: @github_token
       @client.create_pull_request(@pull_request_url, @pull_request_base, @pull_request_head, @pull_request_title, @pull_request_body)

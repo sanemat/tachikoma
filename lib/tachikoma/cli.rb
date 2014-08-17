@@ -55,6 +55,8 @@ module Tachikoma
 Tasks:
   rake tachikoma:run_bundle  # run tachikoma with bundle
   rake tachikoma:run_carton  # run tachikoma with carton
+  rake tachikoma:run_none    # run tachikoma with none
+  rake tachikoma:run_david   # run tachikoma with david
 USAGE
     end
 
