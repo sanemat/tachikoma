@@ -1,6 +1,7 @@
 ## 4.1.1
 
 Features:
+  - Get the ability for node.js application `david update`(#101, @sanemat)
 
 ## 4.1.0 (2014-07-31)
 
