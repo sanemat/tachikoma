@@ -1,9 +1,15 @@
 require 'tachikoma/application'
 
 namespace :tachikoma do
-  desc 'run tachikoma with bundle'
+  desc 'run tachikoma with bundler'
   task :run_bundle do
-    Tachikoma::Application.run 'bundle'
+    warn '[DEPRECATION] `run_bundle` is deprecated. Please use `run_bundler` instead.'
+    Tachikoma::Application.run 'bundler'
+  end
+
+  desc 'run tachikoma with bundler'
+  task :run_bundler do
+    Tachikoma::Application.run 'bundler'
   end
 
   desc 'run tachikoma with carton'
