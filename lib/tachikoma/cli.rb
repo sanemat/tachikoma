@@ -53,11 +53,11 @@ module Tachikoma
       class_options_help(shell)
       shell.say <<-USAGE
 Tasks:
-  rake tachikoma:run_bundler  # run tachikoma with bundler
-  rake tachikoma:run_carton   # run tachikoma with carton
-  rake tachikoma:run_none     # run tachikoma with none
-  rake tachikoma:run_david    # run tachikoma with david
-  rake tachikoma:run_composer # run tachikoma with composer
+  rake tachikoma:run_bundler   # run tachikoma with bundler
+  rake tachikoma:run_carton    # run tachikoma with carton
+  rake tachikoma:run_none      # run tachikoma with none
+  rake tachikoma:run_david     # run tachikoma with david
+  rake tachikoma:run_composer  # run tachikoma with composer
   rake tachikoma:run_cocoapods # run tachikoma with cocoapods
 USAGE
     end
