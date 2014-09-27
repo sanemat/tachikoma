@@ -1,6 +1,7 @@
 ## 4.2.1
 
 Features:
+  - Get the ability for php application `composer update`(#112, @sanemat)
 
 ## 4.2.0 (2014-08-18)
 
