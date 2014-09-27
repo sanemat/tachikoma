@@ -58,6 +58,7 @@ Tasks:
   rake tachikoma:run_none     # run tachikoma with none
   rake tachikoma:run_david    # run tachikoma with david
   rake tachikoma:run_composer # run tachikoma with composer
+  rake tachikoma:run_cocoapods # run tachikoma with cocoapods
 USAGE
     end
 
