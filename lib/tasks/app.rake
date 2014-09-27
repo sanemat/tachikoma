@@ -20,4 +20,9 @@ namespace :tachikoma do
   task :run_david do
     Tachikoma::Application.run 'david'
   end
+
+  desc 'run tachikoma with composer'
+  task :run_composer do
+    Tachikoma::Application.run 'composer'
+  end
 end
