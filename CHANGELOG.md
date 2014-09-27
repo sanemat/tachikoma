@@ -1,8 +1,9 @@
 ## 4.2.1
 
 Features:
-  - Get the ability for php application `composer update`(#112, @sanemat)
+  - Get the ability for php application `composer update`(#112, #109, @sanemat)
   - Deprecate `run_bundle`, Use `run_bundler` instead (#113, @sanemat)
+  - Get the ability for cocoapods application `pods update`(#115, #102, @sanemat)
 
 ## 4.2.0 (2014-08-18)
 
