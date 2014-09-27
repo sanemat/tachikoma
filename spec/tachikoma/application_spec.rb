@@ -33,6 +33,19 @@ YAML
     end
   end
 
+  context 'if strategy is `bundler`' do
+    before do
+      allow_any_instance_of(Tachikoma::Application).to receive(:load)
+      allow_any_instance_of(Tachikoma::Application).to receive(:fetch)
+      allow_any_instance_of(Tachikoma::Application).to receive(:pull_request)
+    end
+
+    it 'should be called `bundler` method' do
+      expect_any_instance_of(Tachikoma::Application).to receive(:bundler)
+      Tachikoma::Application.run 'bundler'
+    end
+  end
+
   context 'if strategy is `carton`' do
     before do
       allow_any_instance_of(Tachikoma::Application).to receive(:load)

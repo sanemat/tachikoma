@@ -67,7 +67,7 @@ module Tachikoma
       sh "git clone #{@authorized_base_url} #{Tachikoma.repos_path}/#{@build_for}"
     end
 
-    def bundle
+    def bundler
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         Bundler.with_clean_env do
           sh %Q(ruby -i -pe '$_.gsub! /^ruby/, "#ruby"' Gemfile)
@@ -81,6 +81,11 @@ module Tachikoma
           sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
         end
       end
+    end
+
+    def bundle
+      warn '[DEPRECATION] `bundle` is deprecated. Please use `bundler` instead.'
+      bundler
     end
 
     def carton
