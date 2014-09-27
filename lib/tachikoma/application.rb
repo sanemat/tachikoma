@@ -124,6 +124,7 @@ module Tachikoma
         sh "git config user.name #{@commiter_name}"
         sh "git config user.email #{@commiter_email}"
         sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
+        # FIXME: Set --prefer-dist and use GitHub token is better.
         sh 'composer install --prefer-source --no-interaction'
         sh 'composer update --prefer-source --no-interaction'
         sh 'git add composer.lock'
