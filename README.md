@@ -7,8 +7,8 @@
 
 Interval Pull Requester with bundler/carton/david/none update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
 
-![tachikoma](https://gist.github.com/sanemat/6605029/raw/ztachikoma-demo5.gif 'tachikoma')
-![tachikoma](https://gist.github.com/sanemat/6605029/raw/ztachikoma-demo6.gif 'tachikoma')
+![tachikoma](https://cloud.githubusercontent.com/assets/75448/4431995/1f7817e4-4681-11e4-8235-64df5c562496.gif 'tachikoma')
+![tachikoma](https://cloud.githubusercontent.com/assets/75448/4431997/26649596-4681-11e4-8d9e-a456f570acd1.gif 'tachikoma')
 
 ## Usage as gem
 
