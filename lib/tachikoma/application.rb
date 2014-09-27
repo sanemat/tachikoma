@@ -125,7 +125,7 @@ module Tachikoma
         sh "git config user.email #{@commiter_email}"
         sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
         # FIXME: Use Octokit.api_endpoint for GitHub Enterprise
-        sh "composer config -g github-oauth.github.com #{@github_token}"
+        sh "composer config github-oauth.github.com #{@github_token}"
         sh 'composer install --no-interaction'
         sh 'composer update --no-interaction'
         sh 'git add composer.lock'
