@@ -98,6 +98,19 @@ YAML
     end
   end
 
+  context 'if strategy is `cocoapods`' do
+    before do
+      allow_any_instance_of(Tachikoma::Application).to receive(:load)
+      allow_any_instance_of(Tachikoma::Application).to receive(:fetch)
+      allow_any_instance_of(Tachikoma::Application).to receive(:pull_request)
+    end
+
+    it 'should be called `cocoapods` method' do
+      expect_any_instance_of(Tachikoma::Application).to receive(:cocoapods)
+      Tachikoma::Application.run 'cocoapods'
+    end
+  end
+
   describe '#bundler_parallel_option' do
     subject { described_class.new }
 

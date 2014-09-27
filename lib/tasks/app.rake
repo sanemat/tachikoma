@@ -31,4 +31,9 @@ namespace :tachikoma do
   task :run_composer do
     Tachikoma::Application.run 'composer'
   end
+
+  desc 'run tachikoma with cocoapods'
+  task :run_cocoapods do
+    Tachikoma::Application.run 'cocoapods'
+  end
 end
