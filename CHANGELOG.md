@@ -2,6 +2,7 @@
 
 Features:
   - Get the ability for php application `composer update`(#112, @sanemat)
+  - Deprecate `run_bundle`, Use `run_bundler` instead (#113, @sanemat)
 
 ## 4.2.0 (2014-08-18)
 
