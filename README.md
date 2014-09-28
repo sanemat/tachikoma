@@ -5,7 +5,7 @@
 [![Code Climate](http://img.shields.io/codeclimate/github/sanemat/tachikoma.svg?style=flat)](https://codeclimate.com/github/sanemat/tachikoma)
 [![Coverage Status](http://img.shields.io/coveralls/sanemat/tachikoma/master.svg?style=flat)](https://coveralls.io/r/sanemat/tachikoma)
 
-Interval Pull Requester with bundler/carton/david/none update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
+Interval Pull Requester with bundler/carton/david/cocoapods/composer/none update. [Actual pull request](https://github.com/mrtaddy/fenix-knight/pull/25)
 
 ![tachikoma](https://cloud.githubusercontent.com/assets/75448/4431995/1f7817e4-4681-11e4-8235-64df5c562496.gif 'tachikoma')
 ![tachikoma](https://cloud.githubusercontent.com/assets/75448/4431997/26649596-4681-11e4-8d9e-a456f570acd1.gif 'tachikoma')
@@ -31,7 +31,7 @@ $ bundle exec tachikoma init
 ```
 $ export BUILD_FOR=<your-repository-name-that-is-same-to-yaml-filename>
 $ export TOKEN_YOUR_REPOSITORY_NAME_THAT_IS_SAME_TO_YAML_FILENAME=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-$ bundle exec rake tachikoma:run_bundle
+$ bundle exec rake tachikoma:run_bundler
 ```
 
 ### Strategies
@@ -41,10 +41,12 @@ You can use these strategies:
 - Bundler (Ruby)
 - Carton (Perl)
 - David (Node.js)
+- Cocoapods (Objective-C)
+- Composer (PHP)
 - None (without strategy)
 
-If you use carton, then you use `tachikoma:run_carton` instead of `tachikoma:run_bundle`.
-You can also use `tachikoma:run_none` and `tachikoma:run_david`.
+If you use carton, then you use `tachikoma:run_carton` instead of `tachikoma:run_bundler`.
+You can also use `tachikoma:run_none`, `tachikoma:run_cocoapods`, `tachikoma:run_composer` and `tachikoma:run_david`.
 
 ### Setting example
 [gist-mail setting (data/gist-mail.yaml)](https://github.com/sanemat/bot-motoko-tachikoma/blob/a47ceb8b88f8b6da8028e5c0b641b8a84c9c3505/data/gist-mail.yaml)
