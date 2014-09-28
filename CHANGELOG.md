@@ -1,4 +1,4 @@
-## 4.2.1
+## 4.2.1 (2014-09-28)
 
 Features:
   - Get the ability for php application `composer update`(#112, #109, @sanemat)
