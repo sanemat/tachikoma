@@ -202,7 +202,7 @@ module Tachikoma
 
     def repository_identity(url)
       project_name, user_name, _ = url.split('/').reverse
-      project_name_identity = project_name.split('.git').first
+      project_name_identity = project_name.split(/\.git\z/).first
       user_name + '/' + project_name_identity
     end
 
