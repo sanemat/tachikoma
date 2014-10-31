@@ -10,3 +10,5 @@ AllCops:
     - pkg/**
     - repos/**
     - vendor/**
+StringLiterals:
+  EnforcedStyle: single_quotes
