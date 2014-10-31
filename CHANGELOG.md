@@ -1,6 +1,7 @@
 ## 4.2.2
 
 Features:
+  - Fix stripping a repos name too match if the url includes .git(#123, @sanemat)
 
 ## 4.2.1 (2014-09-28)
 
