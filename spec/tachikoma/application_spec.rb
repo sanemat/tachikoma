@@ -159,8 +159,8 @@ YAML
       it { expect(subject.repository_identity(url)).to eq identity }
     end
     context '[regression] include .github.com' do
-      let(:identity) { 'example1/foo.github.com' }
-      let(:url) { 'https://github.com/example1/foo.github.com.git' }
+      let(:identity) { 'example1/example2.github.com' }
+      let(:url) { 'https://github.com/example1/example2.github.com.git' }
       it { expect(subject.repository_identity(url)).to eq identity }
     end
   end
@@ -215,6 +215,23 @@ YAML
       let(:type) { 'invalid' }
       # FIXME: Use `is_expected` ?
       it { expect { subject }.to raise_error(InvalidType) }
+    end
+
+    context '[regression] include .github.com' do
+      context 'fork' do
+        let(:base_url) { 'https://github.com/can-not-write/example.github.com.git' }
+        let(:account) { 'readonly' }
+        let(:type) { 'fork' }
+        let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/readonly/example.github.com.git' }
+        it { is_expected.to eq authorized_compare_url }
+      end
+      context 'shared' do
+        let(:base_url) { 'https://github.com/writable/example.github.com.git' }
+        let(:account) { 'me' }
+        let(:type) { 'shared' }
+        let(:authorized_compare_url) { 'https://token:x-oauth-basic@github.com/writable/example.github.com.git' }
+        it { is_expected.to eq authorized_compare_url }
+      end
     end
   end
 
