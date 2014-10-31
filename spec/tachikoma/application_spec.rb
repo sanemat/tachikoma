@@ -158,6 +158,11 @@ YAML
       let(:url) { 'https://github.com/example1/example2/' }
       it { expect(subject.repository_identity(url)).to eq identity }
     end
+    context 'include dot' do
+      let(:identity) { 'example1/foo.bar.baz' }
+      let(:url) { 'https://github.com/example1/foo.bar.baz.git' }
+      it { expect(subject.repository_identity(url)).to eq identity }
+    end
   end
 
   describe '#target_repository_user' do
