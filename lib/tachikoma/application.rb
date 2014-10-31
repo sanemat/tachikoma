@@ -32,7 +32,7 @@ module Tachikoma
       each_config_path = File.join(Tachikoma.data_path, "#{@build_for}.yaml")
       each_config = YAML.safe_load_file(each_config_path) if File.exist?(each_config_path)
       unless each_config
-        fail %Q(Something wrong, BUILD_FOR: #{@build_for}, your config_path: #{each_config_path})
+        fail %(Something wrong, BUILD_FOR: #{@build_for}, your config_path: #{each_config_path})
       end
 
       @configure = base_config.merge(user_config).merge(each_config)
@@ -70,14 +70,14 @@ module Tachikoma
     def bundler
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         Bundler.with_clean_env do
-          sh %Q(ruby -i -pe '$_.gsub! /^ruby/, "#ruby"' Gemfile)
+          sh %(ruby -i -pe '$_.gsub! /^ruby/, "#ruby"' Gemfile)
           sh "git config user.name #{@commiter_name}"
           sh "git config user.email #{@commiter_email}"
           sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
           sh "bundle --gemfile Gemfile --no-deployment --without nothing --path vendor/bundle #{@parallel_option}"
           sh 'bundle update'
           sh 'git add Gemfile.lock'
-          sh %Q(git commit -m "Bundle update #{@readable_time}") do; end # ignore exitstatus
+          sh %(git commit -m "Bundle update #{@readable_time}") do; end # ignore exitstatus
           sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
         end
       end
@@ -97,7 +97,7 @@ module Tachikoma
         sh 'carton update'
         sh 'git add carton.lock' if File.exist?('carton.lock')
         sh 'git add cpanfile.snapshot' if File.exist?('cpanfile.snapshot')
-        sh %Q(git commit -m "Carton update #{@readable_time}") do; end # ignore exitstatus
+        sh %(git commit -m "Carton update #{@readable_time}") do; end # ignore exitstatus
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
@@ -107,7 +107,7 @@ module Tachikoma
         sh "git config user.name #{@commiter_name}"
         sh "git config user.email #{@commiter_email}"
         sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh %Q(git commit --allow-empty -m "None update #{@readable_time}") do; end # ignore exitstatus
+        sh %(git commit --allow-empty -m "None update #{@readable_time}") do; end # ignore exitstatus
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
@@ -119,7 +119,7 @@ module Tachikoma
         sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
         sh 'david update --warn404'
         sh 'git add package.json'
-        sh %Q(git commit -m "David update #{@readable_time}") do; end # ignore exitstatus
+        sh %(git commit -m "David update #{@readable_time}") do; end # ignore exitstatus
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
@@ -134,7 +134,7 @@ module Tachikoma
         sh 'composer install --no-interaction'
         sh 'composer update --no-interaction'
         sh 'git add composer.lock'
-        sh %Q(git commit -m "Composer update #{@readable_time}") do; end # ignore exitstatus
+        sh %(git commit -m "Composer update #{@readable_time}") do; end # ignore exitstatus
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
@@ -147,7 +147,7 @@ module Tachikoma
         sh 'pods install'
         sh 'pods update'
         sh 'git add Podfile.lock'
-        sh %Q(git commit -m "Cocoapods update #{@readable_time}") do; end # ignore exitstatus
+        sh %(git commit -m "Cocoapods update #{@readable_time}") do; end # ignore exitstatus
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
@@ -167,7 +167,7 @@ module Tachikoma
       uri = URI.parse(fetch_url)
       case type
       when 'fork'
-        %Q(#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{path_for_fork(uri.path, github_account)})
+        %(#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{path_for_fork(uri.path, github_account)})
       when 'shared'
         "#{uri.scheme}://#{github_token}:x-oauth-basic@#{uri.host}#{uri.path}"
       else
@@ -175,7 +175,7 @@ module Tachikoma
       end
     end
 
-    def authorized_base_url_with_type(fetch_url, type, github_token, github_account)
+    def authorized_base_url_with_type(fetch_url, type, github_token, _github_account)
       uri = URI.parse(fetch_url)
       case type
       when 'fork', 'shared'
