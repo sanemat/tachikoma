@@ -1,3 +1,7 @@
 ruby:
   enabled: true
   config_file: .rubocop.yml
+  # Prefer single quotes
+  StringLiterals:
+    EnforcedStyle: single_quotes
+    Enabled: true
