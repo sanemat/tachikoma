@@ -213,7 +213,6 @@ YAML
       let(:base_url) { 'https://github.com/writable/example2.git' }
       let(:account) { 'me' }
       let(:type) { 'invalid' }
-      # FIXME: Use `is_expected` ?
       it { expect { subject }.to raise_error(InvalidType) }
     end
 
@@ -260,7 +259,6 @@ YAML
       let(:base_url) { 'https://github.com/writable/example2.git' }
       let(:account) { 'me' }
       let(:type) { 'invalid' }
-      # FIXME: Use `is_expected` ?
       it { expect { subject }.to raise_error(InvalidType) }
     end
   end
