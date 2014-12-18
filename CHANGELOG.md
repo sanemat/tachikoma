@@ -1,6 +1,7 @@
-## 4.2.3
+## 4.2.3 (2014-12-18)
 
 Features:
+  - Fix cocoapods command, s/pods/pod/g (#137, @laiso)
 
 ## 4.2.2 (2014-11-01)
 
