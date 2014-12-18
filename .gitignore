@@ -16,5 +16,8 @@ test/tmp
 test/version_tmp
 tmp
 
-$ Ignore dotenv setting
+# Ignore dotenv setting
 /.env
+
+# Ignore bundler binstubs
+/bundle_bin
