@@ -64,7 +64,7 @@ module Tachikoma
 
     def fetch
       clean
-      sh "git clone #{@authorized_base_url} #{Tachikoma.repos_path}/#{@build_for}"
+      sh "git clone --depth 1 #{@authorized_base_url} #{Tachikoma.repos_path}/#{@build_for}"
     end
 
     def bundler
