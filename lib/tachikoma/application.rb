@@ -224,10 +224,9 @@ module Tachikoma
     end
 
     def bundler_parallel_option(bundler_version, parallel_number)
-      # bundler 1.4.0.pre.1 gets parallel number option
-      if Gem::Version.create(bundler_version) >= Gem::Version.create('1.4.0.pre.1') && parallel_number > 1
-        "--jobs=#{parallel_number}"
-      end
+      # bundler 1.4.0 gets parallel number option
+      return if Gem::Version.create(bundler_version) < Gem::Version.create('1.4.0') || parallel_number <= 1
+      "--jobs=#{parallel_number}"
     end
   end
 end
