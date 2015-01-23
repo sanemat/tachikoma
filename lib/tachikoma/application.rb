@@ -70,15 +70,15 @@ module Tachikoma
     def bundler
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         Bundler.with_clean_env do
-          sh *['ruby', '-i', '-pe', '$_.gsub! /^ruby/, "#ruby"', 'Gemfile']
-          sh *['git', 'config', 'user.name', @commiter_name]
-          sh *['git', 'config', 'user.email', @commiter_email]
-          sh *['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch]
-          sh *(['bundle', '--gemfile', 'Gemfile', '--no-deployment', '--without', 'nothing', '--path', 'vendor/bundle', @parallel_option].compact)
-          sh *['bundle', 'update']
-          sh *['git', 'add', 'Gemfile.lock']
-          sh *['git', 'commit', '-m', "Bundle update #{@readable_time}"] do; end # ignore exitstatus
-          sh *['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"]
+          sh(*['ruby', '-i', '-pe', '$_.gsub! /^ruby/, "#ruby"', 'Gemfile'])
+          sh(*['git', 'config', 'user.name', @commiter_name])
+          sh(*['git', 'config', 'user.email', @commiter_email])
+          sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+          sh(*(['bundle', '--gemfile', 'Gemfile', '--no-deployment', '--without', 'nothing', '--path', 'vendor/bundle', @parallel_option].compact))
+          sh(*%w(bundle update))
+          sh(*['git', 'add', 'Gemfile.lock'])
+          sh(*['git', 'commit', '-m', "Bundle update #{@readable_time}"]) do; end # ignore exitstatus
+          sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
         end
       end
     end
