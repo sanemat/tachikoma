@@ -77,7 +77,9 @@ module Tachikoma
           sh "bundle --gemfile Gemfile --no-deployment --without nothing --path vendor/bundle #{@parallel_option}"
           sh 'bundle update'
           sh 'git add Gemfile.lock'
-          sh %(git commit -m "Bundle update #{@readable_time}") do; end # ignore exitstatus
+          sh %(git commit -m "Bundle update #{@readable_time}") do
+            # ignore exitstatus
+          end
           sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
         end
       end
@@ -97,7 +99,9 @@ module Tachikoma
         sh 'carton update'
         sh 'git add carton.lock' if File.exist?('carton.lock')
         sh 'git add cpanfile.snapshot' if File.exist?('cpanfile.snapshot')
-        sh %(git commit -m "Carton update #{@readable_time}") do; end # ignore exitstatus
+        sh %(git commit -m "Carton update #{@readable_time}") do
+          # ignore exitstatus
+        end
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
@@ -107,7 +111,9 @@ module Tachikoma
         sh "git config user.name #{@commiter_name}"
         sh "git config user.email #{@commiter_email}"
         sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh %(git commit --allow-empty -m "None update #{@readable_time}") do; end # ignore exitstatus
+        sh %(git commit --allow-empty -m "None update #{@readable_time}") do
+          # ignore exitstatus
+        end
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
@@ -119,7 +125,9 @@ module Tachikoma
         sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
         sh 'david update --warn404'
         sh 'git add package.json'
-        sh %(git commit -m "David update #{@readable_time}") do; end # ignore exitstatus
+        sh %(git commit -m "David update #{@readable_time}") do
+          # ignore exitstatus
+        end
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
@@ -134,7 +142,9 @@ module Tachikoma
         sh 'composer install --no-interaction'
         sh 'composer update --no-interaction'
         sh 'git add composer.lock'
-        sh %(git commit -m "Composer update #{@readable_time}") do; end # ignore exitstatus
+        sh %(git commit -m "Composer update #{@readable_time}") do
+          # ignore exitstatus
+        end
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
@@ -147,7 +157,9 @@ module Tachikoma
         sh 'pod install'
         sh 'pod update'
         sh 'git add Podfile.lock'
-        sh %(git commit -m "Cocoapods update #{@readable_time}") do; end # ignore exitstatus
+        sh %(git commit -m "Cocoapods update #{@readable_time}") do
+          # ignore exitstatus
+        end
         sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
       end
     end
@@ -212,10 +224,13 @@ module Tachikoma
     end
 
     def bundler_parallel_option(bundler_version, parallel_number)
-      # bundler 1.4.0.pre.1 gets parallel number option
-      if Gem::Version.create(bundler_version) >= Gem::Version.create('1.4.0.pre.1') && parallel_number > 1
-        "--jobs=#{parallel_number}"
-      end
+      return if !bundler_parallel_available?(bundler_version) || parallel_number <= 1
+      "--jobs=#{parallel_number}"
+    end
+
+    def bundler_parallel_available?(bundler_version)
+      # bundler 1.4.0 gets parallel number option
+      Gem::Version.create(bundler_version) >= Gem::Version.create('1.4.0')
     end
   end
 end
