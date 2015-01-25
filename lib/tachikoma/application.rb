@@ -64,7 +64,7 @@ module Tachikoma
 
     def fetch
       clean
-      sh "git clone #{@authorized_base_url} #{Tachikoma.repos_path}/#{@build_for}"
+      sh(*['git', 'clone', @authorized_base_url, "#{Tachikoma.repos_path}/#{@build_for}"])
     end
 
     def bundler
@@ -92,17 +92,17 @@ module Tachikoma
 
     def carton
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
-        sh "git config user.name #{@commiter_name}"
-        sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh 'carton install'
-        sh 'carton update'
-        sh 'git add carton.lock' if File.exist?('carton.lock')
-        sh 'git add cpanfile.snapshot' if File.exist?('cpanfile.snapshot')
-        sh %(git commit -m "Carton update #{@readable_time}") do
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*%w(carton install))
+        sh(*%w(carton update))
+        sh(*['git', 'add', 'carton.lock']) if File.exist?('carton.lock')
+        sh(*['git', 'add', 'cpanfile.snapshot']) if File.exist?('cpanfile.snapshot')
+        sh(*['git', 'commit', '-m', "Carton update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
       end
     end
 
