@@ -108,59 +108,59 @@ module Tachikoma
 
     def none
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
-        sh "git config user.name #{@commiter_name}"
-        sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh %(git commit --allow-empty -m "None update #{@readable_time}") do
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['git', 'commit', '--allow-empty', '-m', "None update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
       end
     end
 
     def david
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
-        sh "git config user.name #{@commiter_name}"
-        sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh 'david update --warn404'
-        sh 'git add package.json'
-        sh %(git commit -m "David update #{@readable_time}") do
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['david', 'update', '--warn404'])
+        sh(*['git', 'add', 'package.json'])
+        sh(*['git', 'commit', '-m', "David update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
       end
     end
 
     def composer
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
-        sh "git config user.name #{@commiter_name}"
-        sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
         # FIXME: Use Octokit.api_endpoint for GitHub Enterprise
-        sh "composer config github-oauth.github.com #{@github_token}"
-        sh 'composer install --no-interaction'
-        sh 'composer update --no-interaction'
-        sh 'git add composer.lock'
-        sh %(git commit -m "Composer update #{@readable_time}") do
+        sh(*['composer', 'config', 'github-oauth.github.com', @github_token])
+        sh(*['composer', 'install', '--no-interaction'])
+        sh(*['composer', 'update', '--no-interaction'])
+        sh(*['git', 'add', 'composer.lock'])
+        sh(*['git', 'commit', '-m', "Composer update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
       end
     end
 
     def cocoapods
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
-        sh "git config user.name #{@commiter_name}"
-        sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh 'pod install'
-        sh 'pod update'
-        sh 'git add Podfile.lock'
-        sh %(git commit -m "Cocoapods update #{@readable_time}") do
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['pod', 'install'])
+        sh(*['pod', 'update'])
+        sh(*['git', 'add', 'Podfile.lock'])
+        sh(*['git', 'commit', '-m', "Cocoapods update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
       end
     end
 
