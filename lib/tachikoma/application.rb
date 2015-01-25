@@ -64,23 +64,30 @@ module Tachikoma
 
     def fetch
       clean
-      sh "git clone #{@authorized_base_url} #{Tachikoma.repos_path}/#{@build_for}"
+      sh(*['git', 'clone', @authorized_base_url, "#{Tachikoma.repos_path}/#{@build_for}"])
     end
 
     def bundler
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         Bundler.with_clean_env do
-          sh %(ruby -i -pe '$_.gsub! /^ruby/, "#ruby"' Gemfile)
-          sh "git config user.name #{@commiter_name}"
-          sh "git config user.email #{@commiter_email}"
-          sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-          sh "bundle --gemfile Gemfile --no-deployment --without nothing --path vendor/bundle #{@parallel_option}"
-          sh 'bundle update'
-          sh 'git add Gemfile.lock'
-          sh %(git commit -m "Bundle update #{@readable_time}") do
+          sh(*['ruby', '-i', '-pe', '$_.gsub! /^ruby/, "#ruby"', 'Gemfile'])
+          sh(*['git', 'config', 'user.name', @commiter_name])
+          sh(*['git', 'config', 'user.email', @commiter_email])
+          sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+          sh(*([
+            'bundle',
+            '--gemfile', 'Gemfile',
+            '--no-deployment',
+            '--without', 'nothing',
+            '--path', 'vendor/bundle',
+            @parallel_option
+          ].compact))
+          sh(*%w(bundle update))
+          sh(*['git', 'add', 'Gemfile.lock'])
+          sh(*['git', 'commit', '-m', "Bundle update #{@readable_time}"]) do
             # ignore exitstatus
           end
-          sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+          sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
         end
       end
     end
@@ -92,81 +99,87 @@ module Tachikoma
 
     def carton
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
-        sh "git config user.name #{@commiter_name}"
-        sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh 'carton install'
-        sh 'carton update'
-        sh 'git add carton.lock' if File.exist?('carton.lock')
-        sh 'git add cpanfile.snapshot' if File.exist?('cpanfile.snapshot')
-        sh %(git commit -m "Carton update #{@readable_time}") do
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*%w(carton install))
+        sh(*%w(carton update))
+        sh(*['git', 'add', 'carton.lock']) if File.exist?('carton.lock')
+        sh(*['git', 'add', 'cpanfile.snapshot']) if File.exist?('cpanfile.snapshot')
+        sh(*['git', 'commit', '-m', "Carton update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
       end
     end
 
     def none
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
-        sh "git config user.name #{@commiter_name}"
-        sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh %(git commit --allow-empty -m "None update #{@readable_time}") do
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['git', 'commit', '--allow-empty', '-m', "None update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
       end
     end
 
     def david
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
-        sh "git config user.name #{@commiter_name}"
-        sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh 'david update --warn404'
-        sh 'git add package.json'
-        sh %(git commit -m "David update #{@readable_time}") do
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['david', 'update', '--warn404'])
+        sh(*['git', 'add', 'package.json'])
+        sh(*['git', 'commit', '-m', "David update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
       end
     end
 
     def composer
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
-        sh "git config user.name #{@commiter_name}"
-        sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
         # FIXME: Use Octokit.api_endpoint for GitHub Enterprise
-        sh "composer config github-oauth.github.com #{@github_token}"
-        sh 'composer install --no-interaction'
-        sh 'composer update --no-interaction'
-        sh 'git add composer.lock'
-        sh %(git commit -m "Composer update #{@readable_time}") do
+        sh(*['composer', 'config', 'github-oauth.github.com', @github_token])
+        sh(*['composer', 'install', '--no-interaction'])
+        sh(*['composer', 'update', '--no-interaction'])
+        sh(*['git', 'add', 'composer.lock'])
+        sh(*['git', 'commit', '-m', "Composer update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
       end
     end
 
     def cocoapods
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
-        sh "git config user.name #{@commiter_name}"
-        sh "git config user.email #{@commiter_email}"
-        sh "git checkout -b tachikoma/update-#{@readable_time} #{@base_remote_branch}"
-        sh 'pod install'
-        sh 'pod update'
-        sh 'git add Podfile.lock'
-        sh %(git commit -m "Cocoapods update #{@readable_time}") do
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*%w(pod install))
+        sh(*%w(pod update))
+        sh(*['git', 'add', 'Podfile.lock'])
+        sh(*['git', 'commit', '-m', "Cocoapods update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh "git push #{@authorized_compare_url} tachikoma/update-#{@readable_time}"
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
       end
     end
 
     def pull_request
       @client = Octokit::Client.new access_token: @github_token
-      @client.create_pull_request(@pull_request_url, @pull_request_base, @pull_request_head, @pull_request_title, @pull_request_body)
+      @client.create_pull_request(
+        @pull_request_url,
+        @pull_request_base,
+        @pull_request_head,
+        @pull_request_title,
+        @pull_request_body
+      )
     rescue Octokit::UnprocessableEntity
     end
 
