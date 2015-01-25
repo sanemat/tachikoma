@@ -64,6 +64,8 @@ version:
   '2.0.0'
 pull_request_body:
   ':ideograph_advantage::ideograph_advantage::ideograph_advantage:'
+git_clone_depth:
+  50
 ```
 
 ### Build script example
