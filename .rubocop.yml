@@ -15,3 +15,5 @@ LineLength:
   Max: 120
 Blocks:
   Enabled: false
+Style/DotPosition:
+  Enabled: true
