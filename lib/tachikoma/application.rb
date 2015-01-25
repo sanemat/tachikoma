@@ -74,7 +74,14 @@ module Tachikoma
           sh(*['git', 'config', 'user.name', @commiter_name])
           sh(*['git', 'config', 'user.email', @commiter_email])
           sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
-          sh(*(['bundle', '--gemfile', 'Gemfile', '--no-deployment', '--without', 'nothing', '--path', 'vendor/bundle', @parallel_option].compact))
+          sh(*([
+            'bundle',
+            '--gemfile', 'Gemfile',
+            '--no-deployment',
+            '--without', 'nothing',
+            '--path', 'vendor/bundle',
+            @parallel_option
+          ].compact))
           sh(*%w(bundle update))
           sh(*['git', 'add', 'Gemfile.lock'])
           sh(*['git', 'commit', '-m', "Bundle update #{@readable_time}"]) do
@@ -166,7 +173,13 @@ module Tachikoma
 
     def pull_request
       @client = Octokit::Client.new access_token: @github_token
-      @client.create_pull_request(@pull_request_url, @pull_request_base, @pull_request_head, @pull_request_title, @pull_request_body)
+      @client.create_pull_request(
+        @pull_request_url,
+        @pull_request_base,
+        @pull_request_head,
+        @pull_request_title,
+        @pull_request_body
+      )
     rescue Octokit::UnprocessableEntity
     end
 

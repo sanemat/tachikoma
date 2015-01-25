@@ -7,7 +7,9 @@ describe 'Tachikoma::Aplication' do
   describe '#pull_request' do
     context 'when github returns 422 UnprocessableEntity' do
       before do
-        allow(Octokit::Client).to receive_message_chain(:new, :create_pull_request).and_raise(Octokit::UnprocessableEntity)
+        allow(Octokit::Client).to \
+          receive_message_chain(:new, :create_pull_request)
+          .and_raise(Octokit::UnprocessableEntity)
       end
 
       it 'should not raise Octokit::UnprocessableEntity error' do
