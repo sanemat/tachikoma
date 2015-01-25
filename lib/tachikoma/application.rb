@@ -154,8 +154,8 @@ module Tachikoma
         sh(*['git', 'config', 'user.name', @commiter_name])
         sh(*['git', 'config', 'user.email', @commiter_email])
         sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
-        sh(*['pod', 'install'])
-        sh(*['pod', 'update'])
+        sh(*%w(pod install))
+        sh(*%w(pod update))
         sh(*['git', 'add', 'Podfile.lock'])
         sh(*['git', 'commit', '-m', "Cocoapods update #{@readable_time}"]) do
           # ignore exitstatus
