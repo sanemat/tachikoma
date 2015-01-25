@@ -48,6 +48,7 @@ module Tachikoma
       @timestamp_format = @configure['timestamp_format']
       @readable_time = Time.now.utc.strftime(@timestamp_format)
       @parallel_option = bundler_parallel_option(Bundler::VERSION, @configure['bundler_parallel_number'])
+      @depth_option = git_clone_depth_option(@configure['git_clone_depth'])
 
       @target_head = target_repository_user(@type, @url, @github_account)
       @pull_request_url = repository_identity(@url)
@@ -64,7 +65,12 @@ module Tachikoma
 
     def fetch
       clean
-      sh(*['git', 'clone', @authorized_base_url, "#{Tachikoma.repos_path}/#{@build_for}"])
+      sh(*([
+        'git', 'clone',
+        *@depth_option,
+        @authorized_base_url,
+        "#{Tachikoma.repos_path}/#{@build_for}"
+      ].compact))
     end
 
     def bundler
@@ -244,6 +250,11 @@ module Tachikoma
     def bundler_parallel_available?(bundler_version)
       # bundler 1.4.0 gets parallel number option
       Gem::Version.create(bundler_version) >= Gem::Version.create('1.4.0')
+    end
+
+    def git_clone_depth_option(depth)
+      return [nil] unless depth
+      ['--depth', depth.to_s]
     end
   end
 end
