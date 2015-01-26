@@ -14,3 +14,5 @@ pull_request_base:
   'master'
 bundler_parallel_number:
   4
+git_clone_depth:
+  false

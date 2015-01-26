@@ -8,3 +8,5 @@ language:
   'ruby'
 version:
   '2.0.0'
+git_clone_depth:
+  50
