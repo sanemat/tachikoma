@@ -1,3 +1,8 @@
+## 4.2.4 (2015-01-31)
+
+Features:
+  - Use shalow copy(optional) (#151, #141, #139, @laiso, @sanemat)
+
 ## 4.2.3 (2014-12-18)
 
 Features:
