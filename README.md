@@ -54,14 +54,8 @@ You can also use `tachikoma:run_none`, `tachikoma:run_cocoapods`, `tachikoma:run
 ```yaml
 url:
   'https://github.com/sanemat/gist-mail.git'
-frequency:
-  "every 1.day, :at => '6:30 am'"
 type:
   'fork'
-language:
-  'ruby'
-version:
-  '2.0.0'
 pull_request_body:
   ':ideograph_advantage::ideograph_advantage::ideograph_advantage:'
 git_clone_depth:
