@@ -3,10 +3,12 @@
 # The name as a committer name on git commit.
 # See:
 # https://github.com/sanemat/do-not-merge-wip-for-github/commit/597425a65b87e22657a69172de182f978eed4d72
+# TODO: commiter is typo, committer is valid, so I'll fix this v5
 commiter_name: 'bot-motoko'
 # The email as a committer email on git commit.
 # See:
 # https://github.com/sanemat/do-not-merge-wip-for-github/commit/597425a65b87e22657a69172de182f978eed4d72
+# TODO: commiter is typo, committer is valid, so I'll fix this v5
 commiter_email: 'bot-motoko@al.sane.jp'
 # The GitHub account for pull request.
 # See:
