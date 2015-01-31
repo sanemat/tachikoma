@@ -54,6 +54,8 @@ If you use carton, then you use `tachikoma:run_carton` instead of `tachikoma:run
 You can also use `tachikoma:run_none`, `tachikoma:run_cocoapods`, `tachikoma:run_composer` and `tachikoma:run_david`.
 
 ### Setting example
+
+See [configuration options](data/default.yaml) and
 [gist-mail setting (data/gist-mail.yaml)](https://github.com/sanemat/bot-motoko-tachikoma/blob/a47ceb8b88f8b6da8028e5c0b641b8a84c9c3505/data/gist-mail.yaml)
 
 ```yaml
@@ -63,9 +65,9 @@ type:
   'fork'
 pull_request_body:
   ':ideograph_advantage::ideograph_advantage::ideograph_advantage:'
-git_clone_depth:
-  50
 ```
+
+This is the [result](https://github.com/sanemat/gist-mail/pull/54).
 
 ### Build script example
 - [cloudbees.com dev@cloud: Above v4.0.0.beta](https://gist.github.com/sanemat/5859031/aa1966a46a7c00ed975b487f423c36b8ae5b976d)
