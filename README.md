@@ -7,7 +7,7 @@
 
 **Tachikoma** is a Interval Pull Requester with
 bundler/carton/david/cocoapods/composer/none update.
-[Actual pull request](https://github.com/sanemat/tachikoma/pull/152)
+This is [Actual pull request](https://github.com/sanemat/tachikoma/pull/152).
 
 ![tachikoma](https://cloud.githubusercontent.com/assets/75448/4431995/1f7817e4-4681-11e4-8235-64df5c562496.gif 'tachikoma')
 ![tachikoma](https://cloud.githubusercontent.com/assets/75448/4431997/26649596-4681-11e4-8d9e-a456f570acd1.gif 'tachikoma')
