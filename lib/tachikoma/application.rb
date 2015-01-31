@@ -242,6 +242,7 @@ module Tachikoma
       identity
     end
 
+    # TODO: refactor to returning command args array like git clone depth option
     def bundler_parallel_option(bundler_version, parallel_number)
       return if !bundler_parallel_available?(bundler_version) || parallel_number <= 1
       "--jobs=#{parallel_number}"
