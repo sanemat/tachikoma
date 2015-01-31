@@ -12,6 +12,10 @@ pull_request_body:
   ':hamster::hamster::hamster:'
 pull_request_base:
   'master'
+type:
+  'fork'
+url:
+  'https://example.com/git-url.git'
 bundler_parallel_number:
   4
 git_clone_depth:
