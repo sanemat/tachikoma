@@ -80,16 +80,26 @@ module Tachikoma
           sh(*['git', 'config', 'user.name', @commiter_name])
           sh(*['git', 'config', 'user.email', @commiter_email])
           sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+          if File.exist?('Gemfile')
+            @bundler_key_file = 'Gemfile'
+            @bundler_lock_file = 'Gemfile.lock'
+          elsif File.exist?('gems.rb')
+            @bundler_key_file = 'gems.rb'
+            @bundler_lock_file = 'gems.locked'
+          else
+            @bundler_key_file = 'Gemfile'
+            @bundler_lock_file = 'Gemfile.lock'
+          end
           sh(*([
             'bundle',
-            '--gemfile', 'Gemfile',
+            '--gemfile', @bundler_key_file,
             '--no-deployment',
             '--without', 'nothing',
             '--path', 'vendor/bundle',
             @parallel_option
           ].compact))
           sh(*%w(bundle update))
-          sh(*['git', 'add', 'Gemfile.lock'])
+          sh(*['git', 'add', @bundler_lock_file])
           sh(*['git', 'commit', '-m', "Bundle update #{@readable_time}"]) do
             # ignore exitstatus
           end
