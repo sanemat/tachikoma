@@ -1,3 +1,8 @@
+## master
+
+Features:
+  - Support gems.rb/gems.locked pair for bundler v1.8.0 (#159, #161, @sanemat)
+
 ## 4.2.4 (2015-01-31)
 
 Features:
