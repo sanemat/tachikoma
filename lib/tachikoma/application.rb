@@ -147,7 +147,9 @@ module Tachikoma
         sh(*['git', 'config', 'user.email', @commiter_email])
         sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
         sh(*['david', 'update', '--warn404'])
+        sh(*['npm', 'shrinkwrap']) if File.exist?('npm-shrinkwrap.json')
         sh(*['git', 'add', 'package.json'])
+        sh(*['git', 'add', 'npm-shrinkwrap.json']) if File.exist?('npm-shrinkwrap.json')
         sh(*['git', 'commit', '-m', "David update #{@readable_time}"]) do
           # ignore exitstatus
         end
