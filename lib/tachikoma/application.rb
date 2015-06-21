@@ -3,6 +3,7 @@ require 'uri'
 require 'tachikoma'
 require 'octokit'
 require 'fileutils'
+require 'restore_bundled_with'
 
 module Tachikoma
   # Main logic of Tachikoma
@@ -99,6 +100,13 @@ module Tachikoma
             @parallel_option
           ].compact))
           sh(*%w(bundle update))
+
+          # restore_bundled_with
+          lock_file_contents = File.read(@bundler_lock_file)
+          lock_file = RestoreBundledWith::Lock.restore(
+            lock_file_contents, @bundler_lock_file)
+          lock_file.write_to(@bundler_lock_file)
+
           sh(*['git', 'add', @bundler_lock_file])
           sh(*['git', 'commit', '-m', "Bundle update #{@readable_time}"]) do
             # ignore exitstatus
