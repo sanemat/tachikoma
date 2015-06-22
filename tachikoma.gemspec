@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'octokit', '>= 3.2', '< 4.0'
   spec.add_dependency 'json'
   spec.add_dependency 'thor'
+  spec.add_dependency 'restore_bundled_with'
 
   spec.add_development_dependency 'bundler', '>= 1.3', '< 2.0'
   spec.add_development_dependency 'dotenv'
