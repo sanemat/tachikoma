@@ -99,6 +99,7 @@ module Tachikoma
             @parallel_option
           ].compact))
           sh(*%w(bundle update))
+          sh(*['bundle', 'exec', 'restore-bundled-with', '--lockfile', @bundler_lock_file])
           sh(*['git', 'add', @bundler_lock_file])
           sh(*['git', 'commit', '-m', "Bundle update #{@readable_time}"]) do
             # ignore exitstatus
