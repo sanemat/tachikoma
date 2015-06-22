@@ -105,7 +105,7 @@ module Tachikoma
           lock_file_contents = File.read(@bundler_lock_file)
           lock_file = RestoreBundledWith::Lock.restore(
             lock_file_contents, @bundler_lock_file)
-          lock_file.write_to(@bundler_lock_file)
+          File.write(@bundler_lock_file, lock_file.body)
 
           sh(*['git', 'add', @bundler_lock_file])
           sh(*['git', 'commit', '-m', "Bundle update #{@readable_time}"]) do
