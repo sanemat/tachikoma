@@ -50,6 +50,7 @@ module Tachikoma
       @readable_time = Time.now.utc.strftime(@timestamp_format)
       @parallel_option = bundler_parallel_option(Bundler::VERSION, @configure['bundler_parallel_number'])
       @depth_option = git_clone_depth_option(@configure['git_clone_depth'])
+      @bundler_restore_bundled_with = @configure['bundler_restore_bundled_with']
 
       @target_head = target_repository_user(@type, @url, @github_account)
       @pull_request_url = repository_identity(@url)
@@ -101,11 +102,13 @@ module Tachikoma
           ].compact))
           sh(*%w(bundle update))
 
-          # restore_bundled_with
-          lock_file_contents = File.read(@bundler_lock_file)
-          lock_file = RestoreBundledWith::Lock.restore(
-            lock_file_contents, @bundler_lock_file)
-          File.write(@bundler_lock_file, lock_file.body)
+          if @bundler_restore_bundled_with
+            # restore_bundled_with
+            lock_file_contents = File.read(@bundler_lock_file)
+            lock_file = RestoreBundledWith::Lock.restore(
+              lock_file_contents, @bundler_lock_file)
+            File.write(@bundler_lock_file, lock_file.body)
+          end
 
           sh(*['git', 'add', @bundler_lock_file])
           sh(*['git', 'commit', '-m', "Bundle update #{@readable_time}"]) do

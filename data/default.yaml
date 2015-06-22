@@ -57,3 +57,14 @@ bundler_parallel_number: 4
 #
 # Supported: false, 1, 2, 3, ...
 git_clone_depth: false
+# Bundler v1.10.0 or higher tracks Bundler version in lockfile.
+# We should use latest Bundler, but sometimes we are afraid we have to use older Bundler.
+# We use Different version of Bundler between a project and a local machine.
+# In addition, Bundler v1.9.x removes BUNDLED WITH section.
+# RestoreBundledWith solves these conflicts.
+# RestoreBundledWith restores BUNDLED WITH section from git repository.
+# See also:
+# https://github.com/packsaddle/ruby-restore_bundled_with
+#
+# Supported: true, false
+bundler_restore_bundled_with: false
