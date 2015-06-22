@@ -4,49 +4,69 @@
 # See:
 # https://github.com/sanemat/do-not-merge-wip-for-github/commit/597425a65b87e22657a69172de182f978eed4d72
 # TODO: commiter is typo, committer is valid, so I'll fix this v5
+#
 commiter_name: 'bot-motoko'
+#
 # The email as a committer email on git commit.
 # See:
 # https://github.com/sanemat/do-not-merge-wip-for-github/commit/597425a65b87e22657a69172de182f978eed4d72
 # TODO: commiter is typo, committer is valid, so I'll fix this v5
+#
 commiter_email: 'bot-motoko@al.sane.jp'
+#
 # The GitHub account for pull request.
 # See:
 # https://github.com/sanemat/do-not-merge-wip-for-github/pull/25
+#
 github_account: 'bot-motoko'
+#
 # The branch is checked out.
 # e.g. $ git checkout -b new_branch [origin/master]
+#
 base_remote_branch: 'origin/master'
+#
 # The timestamp is used identifying branch/pull request
 # with human readable format.
 # See available format:
 # http://docs.ruby-lang.org/en/2.2.0/Time.html#method-i-strftime
+#
 timestamp_format: '%Y%m%d%H%M%S'
+#
 # The pull request body contents.
 # you can use text/html/markdown and any format
 # which GitHub(via Octokit) accepts.
 # See:
 # https://github.com/sanemat/gist-mail/pull/54
+#
 pull_request_body: ':hamster::hamster::hamster:'
+#
 # The base branch which you want to pull request,
 # master is most popular, develop and gh-pages are common.
+#
 pull_request_base: 'master'
+#
 # The type about fork & pull and shared repository
 # See also:
 # https://help.github.com/articles/using-pull-requests/#types-of-collaborative-development-models
 #
 # Supported: 'fork', 'shared'
+#
 type: 'fork'
+#
 # The URL of git repository you want to execute.
 # https is highly recommended.
+#
 url: 'https://example.com/git-url.git'
+#
 # For ruby bundler parallel install option
 # Require Bundler v1.4.0 or higher
 # See also:
 # http://robots.thoughtbot.com/parallel-gem-installing-using-bundler
 #
 # Supported: 1, 2, 3, ...
+#
 bundler_parallel_number: 4
+#
 # Use shallow clone for huge repository, if you want.
 # Require Git v1.9.0 or higher
 # We can push from a shallowly-cloned repository above git v1.9.0
@@ -56,7 +76,9 @@ bundler_parallel_number: 4
 # e.g. Tachikoma.io's default is 100, Travis-CI's default is 50 :)
 #
 # Supported: false, 1, 2, 3, ...
+#
 git_clone_depth: false
+#
 # Bundler v1.10.0 or higher tracks Bundler version in lockfile.
 # We should use latest Bundler, but sometimes we are afraid we have to use older Bundler.
 # We use Different version of Bundler between a project and a local machine.
@@ -67,4 +89,5 @@ git_clone_depth: false
 # https://github.com/packsaddle/ruby-restore_bundled_with
 #
 # Supported: true, false
+#
 bundler_restore_bundled_with: false
