@@ -2,6 +2,10 @@
 
 Features:
 
+## 4.2.6 (2015-06-22)
+
+Features:
+  - Add option: bundler_restore_bundled_with (#185, #187, @sanemat)
 
 ## 4.2.5 (2015-05-07)
 
