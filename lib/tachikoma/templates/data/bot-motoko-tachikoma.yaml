@@ -47,7 +47,7 @@
 #
 # The type about fork & pull and shared repository
 # See also:
-# https://help.github.com/articles/using-pull-requests/#types-of-collaborative-development-models
+# https://help.github.com/articles/types-of-collaborative-development-models/
 #
 # Supported: 'fork', 'shared'
 #
