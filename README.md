@@ -22,7 +22,7 @@ You can use these strategies:
 - Bundler (Ruby)
 - Carton (Perl)
 - David (Node.js)
-- Cocoapods (Objective-C)
+- CocoaPods (Objective-C)
 - Composer (PHP)
 - None (without strategy)
 
