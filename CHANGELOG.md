@@ -2,6 +2,13 @@
 
 Features:
 
+## 4.2.7 (2016-07-18)
+
+Features:
+
+  - Relax dependencies (#190, @sanemat)
+  - Restrict dependencies (#247, @sanemat)
+
 ## 4.2.6 (2015-06-22)
 
 Features:
