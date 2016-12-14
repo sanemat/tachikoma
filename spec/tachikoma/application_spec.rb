@@ -184,6 +184,16 @@ YAML
     end
   end
 
+  describe '#repository_identity_from_ssh' do
+    subject { described_class.new }
+    let(:identity) { 'example1/example2' }
+
+    context 'ssh with .git' do
+      let(:ssh) { 'git@github.com:example1/example2.git' }
+      it { expect(subject.repository_identity_from_ssh(ssh)).to eq identity }
+    end
+  end
+
   describe '#target_repository_user' do
     subject { described_class.new }
     let(:url) { 'https://github.com/example/example2.git' }
@@ -204,6 +214,29 @@ YAML
     context 'invalid type' do
       let(:type) { 'invalid' }
       it { expect { subject.target_repository_user(type, url, github_user) }.to raise_error(InvalidType) }
+    end
+  end
+
+  describe '#target_repository_user_from_ssh' do
+    subject { described_class.new }
+    let(:ssh) { 'git@github.com:example/example2.git' }
+    let(:repos_user) { 'example' }
+    let(:github_user) { 'me' }
+
+    context 'valid type' do
+      context 'fork' do
+        let(:type) { 'fork' }
+        it { expect(subject.target_repository_user_from_ssh(type, ssh, github_user)).to eq github_user }
+      end
+      context 'shared' do
+        let(:type) { 'shared' }
+        it { expect(subject.target_repository_user_from_ssh(type, ssh, github_user)).to eq repos_user }
+      end
+    end
+
+    context 'invalid type' do
+      let(:type) { 'invalid' }
+      it { expect { subject.target_repository_user_from_ssh(type, ssh, github_user) }.to raise_error(InvalidType) }
     end
   end
 
