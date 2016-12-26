@@ -58,7 +58,6 @@ module Tachikoma
         @target_head = target_repository_user(@type, @url, @github_account)
       end
 
-
       @timestamp_format = @configure['timestamp_format']
       @readable_time = Time.now.utc.strftime(@timestamp_format)
       @parallel_option = bundler_parallel_option(Bundler::VERSION, @configure['bundler_parallel_number'])
@@ -293,7 +292,6 @@ module Tachikoma
       project_name_identity = strip_extension(project_name)
       user_name + '/' + project_name_identity
     end
-
 
     def strip_extension(name)
       /\A(?<identity>.*?)(?:\.git)?\z/ =~ name
