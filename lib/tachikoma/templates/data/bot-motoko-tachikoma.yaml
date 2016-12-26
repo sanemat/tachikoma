@@ -60,7 +60,7 @@ url: 'https://github.com/sanemat/bot-motoko-tachikoma.git'
 #
 # Use an SSH key and passphrase from account.
 #
-ssh: 'ssh://github.com:sanemat/bot-motoko-tachikoma.git'
+ssh: 'git@github.com:sanemat/bot-motoko-tachikoma.gi'
 #
 # For ruby bundler parallel install option
 # Require Bundler v1.4.0 or higher
