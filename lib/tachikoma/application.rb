@@ -46,7 +46,7 @@ module Tachikoma
       @type = @configure['type']
       @base_remote_branch = @configure['base_remote_branch']
 
-      unless @ssh.nil?
+      if @ssh
         @authorized_compare_url = @ssh
         @authorized_base_url    = @ssh
         @pull_request_url = repository_identity_from_ssh(@ssh)
