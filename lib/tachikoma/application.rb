@@ -191,6 +191,21 @@ module Tachikoma
       end
     end
 
+    def carthage
+      Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*%w(carthage bootstrap))
+        sh(*%w(carthage update))
+        sh(*['git', 'add', 'Cartfile.resolved'])
+        sh(*['git', 'commit', '-m', "Carthage update #{@readable_time}"]) do
+          # ignore exitstatus
+        end
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+      end
+    end
+
     def cocoapods
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh(*['git', 'config', 'user.name', @commiter_name])
