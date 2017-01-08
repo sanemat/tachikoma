@@ -6,5 +6,3 @@ group :development, :test do
   gem 'pry'
   gem 'coveralls', require: false
 end
-
-gem 'oj'

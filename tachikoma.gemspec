@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'safe_yaml'
   spec.add_dependency 'rake'
   spec.add_dependency 'octokit', '>= 3.2', '< 5.0'
-  spec.add_dependency 'json', '< 2.0'
   spec.add_dependency 'thor'
   spec.add_dependency 'restore_bundled_with'
 
