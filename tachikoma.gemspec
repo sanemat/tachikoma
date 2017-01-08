@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Update gem frequently gets less pain. Let's doing bundle update as a habit!"
   spec.homepage      = 'https://github.com/sanemat/tachikoma'
   spec.license       = 'MIT'
+  spec.required_ruby_version = '>= 2.0'
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.executables   = spec.files.grep(/^bin\//) { |f| File.basename(f) }
