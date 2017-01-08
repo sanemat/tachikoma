@@ -3,13 +3,11 @@ sudo: false
 rvm:
   - 2.0.0
   - 2.1.10
-  - 2.2.5
-  - 2.3.1
+  - 2.2.6
+  - 2.3.3
+  - 2.4.0
 before_install:
   - gem update bundler
 notifications:
   email:
     - ogataken@gmail.com
-branches:
-  only:
-    - master
