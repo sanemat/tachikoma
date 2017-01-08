@@ -2,6 +2,11 @@
 
 Features:
 
+## 5.0.0 (2017-01-08)
+
+- Drop support for ruby 1.9
+- Remove json dependency
+
 ## 4.2.7 (2016-07-18)
 
 Features:
