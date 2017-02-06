@@ -36,4 +36,9 @@ namespace :tachikoma do
   task :run_cocoapods do
     Tachikoma::Application.run 'cocoapods'
   end
+
+  desc 'run tachikoma with carthage'
+  task :run_carthage do
+    Tachikoma::Application.run 'carthage'
+  end
 end
