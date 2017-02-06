@@ -2,6 +2,18 @@
 
 Features:
 
+## 5.0.0 (2017-01-08)
+
+- Drop support for ruby 1.9
+- Remove json dependency
+
+## 4.2.7 (2016-07-18)
+
+Features:
+
+  - Relax dependencies (#190, @sanemat)
+  - Restrict dependencies (#247, @sanemat)
+
 ## 4.2.6 (2015-06-22)
 
 Features:
