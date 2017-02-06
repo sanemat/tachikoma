@@ -22,7 +22,8 @@ You can use these strategies:
 - Bundler (Ruby)
 - Carton (Perl)
 - David (Node.js)
-- CocoaPods (Objective-C)
+- CocoaPods (Objective-C, Swift)
+- Carthage (Swift)
 - Composer (PHP)
 - None (without strategy)
 
