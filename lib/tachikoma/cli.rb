@@ -59,6 +59,7 @@ Tasks:
   rake tachikoma:run_david     # run tachikoma with david
   rake tachikoma:run_composer  # run tachikoma with composer
   rake tachikoma:run_cocoapods # run tachikoma with cocoapods
+  rake tachikoma:run_carthage  # run tachikoma with carthage
 USAGE
     end
 
