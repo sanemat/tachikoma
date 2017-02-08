@@ -2,6 +2,10 @@
 
 Features:
 
+## 5.1.0 (2017-02-08)
+
+- Support Carthage (#282, @nakajijapan)
+
 ## 5.0.0 (2017-01-08)
 
 - Drop support for ruby 1.9
