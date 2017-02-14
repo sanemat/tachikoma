@@ -221,6 +221,21 @@ module Tachikoma
       end
     end
 
+    def npm
+      Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
+        sh(*['git', 'config', 'user.name', @commiter_name])
+        sh(*['git', 'config', 'user.email', @commiter_email])
+        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*%w(npm outdated))
+        sh(*%w(npm update))
+        sh(*['git', 'add', 'package.json']) if File.exist?('package.json')
+        sh(*['git', 'commit', '-m', "Npm update #{@readable_time}"]) do
+          # ignore exitstatus
+        end
+        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+      end
+    end
+
     def pull_request
       @client = Octokit::Client.new access_token: @github_token
       @client.create_pull_request(
