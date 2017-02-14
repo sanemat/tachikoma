@@ -41,4 +41,9 @@ namespace :tachikoma do
   task :run_carthage do
     Tachikoma::Application.run 'carthage'
   end
+
+  desc 'run tachikoma with npm'
+  task :run_npm do
+    Tachikoma::Application.run 'npm'
+  end
 end
