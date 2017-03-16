@@ -60,6 +60,7 @@ Tasks:
   rake tachikoma:run_composer  # run tachikoma with composer
   rake tachikoma:run_cocoapods # run tachikoma with cocoapods
   rake tachikoma:run_carthage  # run tachikoma with carthage
+  rake tachikoma:run_ncu       # run tachikoma with npm-check-updates
 USAGE
     end
 
