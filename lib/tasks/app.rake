@@ -41,4 +41,9 @@ namespace :tachikoma do
   task :run_carthage do
     Tachikoma::Application.run 'carthage'
   end
+
+  desc 'run tachikoma with npm-check-updates'
+  task :run_ncu do
+    Tachikoma::Application.run 'ncu'
+  end
 end
