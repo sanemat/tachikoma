@@ -22,6 +22,7 @@ You can use these strategies:
 - Bundler (Ruby)
 - Carton (Perl)
 - David (Node.js)
+- Yarn (Node.js)
 - npm-check-updates (Node.js)
 - CocoaPods (Objective-C, Swift)
 - Carthage (Swift)

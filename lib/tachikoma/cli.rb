@@ -61,6 +61,7 @@ Tasks:
   rake tachikoma:run_cocoapods # run tachikoma with cocoapods
   rake tachikoma:run_carthage  # run tachikoma with carthage
   rake tachikoma:run_ncu       # run tachikoma with npm-check-updates
+  rake tachikoma:run_yarn      # run tachikoma with yarn
 USAGE
     end
 

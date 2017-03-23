@@ -46,4 +46,9 @@ namespace :tachikoma do
   task :run_ncu do
     Tachikoma::Application.run 'ncu'
   end
+
+  desc 'run tachikoma with yarn'
+  task :run_yarn do
+    Tachikoma::Application.run 'yarn'
+  end
 end
