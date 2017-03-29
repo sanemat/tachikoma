@@ -2,6 +2,11 @@
 
 Features:
 
+## 5.2.0 (2017-03-30)
+
+- Support Yarn (#285, @yhirano55)
+- Support npm-check-updates (#286, @yhirano55)
+
 ## 5.1.0 (2017-02-08)
 
 - Support Carthage (#282, @nakajijapan)
