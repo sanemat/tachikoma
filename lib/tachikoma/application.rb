@@ -62,7 +62,7 @@ module Tachikoma
 
     def clean
       mkdir_p(Tachikoma.repos_path)
-      rm_rf(Dir.glob(File.join(Tachikoma.repos_path, '*')))
+      rm_rf(Dir.glob(File.join(Tachikoma.repos_path, @build_for, '*')))
     end
 
     def fetch
