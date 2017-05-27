@@ -25,6 +25,11 @@ github_account: 'bot-motoko'
 #
 base_remote_branch: 'origin/master'
 #
+# You can change branch name from a default name. Default is tachikoma/update-%s
+# e.g. $ git checkout -b bundle-update-20170522021457
+#
+branch_name: 'bundle-update-%s'
+#
 # The timestamp is used identifying branch/pull request
 # with human readable format.
 # See available format:
