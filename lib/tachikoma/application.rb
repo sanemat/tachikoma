@@ -58,6 +58,8 @@ module Tachikoma
       @pull_request_base = @configure['pull_request_base']
       @pull_request_head = "#{@target_head}:tachikoma/update-#{@readable_time}"
       @pull_request_title = "Exec tachikoma update #{@readable_time}"
+
+      @branch_name = (@configure['branch_name'] || 'tachikoma/update-%s') % @readable_time
     end
 
     def clean
@@ -81,7 +83,7 @@ module Tachikoma
           sh(*['ruby', '-i', '-pe', '$_.gsub! /^ruby/, "#ruby"', 'Gemfile'])
           sh(*['git', 'config', 'user.name', @commiter_name])
           sh(*['git', 'config', 'user.email', @commiter_email])
-          sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+          sh(*['git', 'checkout', '-b', @branch_name, @base_remote_branch])
           if File.exist?('Gemfile')
             @bundler_key_file = 'Gemfile'
             @bundler_lock_file = 'Gemfile.lock'
@@ -114,7 +116,7 @@ module Tachikoma
           sh(*['git', 'commit', '-m', "Bundle update #{@readable_time}"]) do
             # ignore exitstatus
           end
-          sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+          sh(*['git', 'push', @authorized_compare_url, @branch_name])
         end
       end
     end
@@ -128,7 +130,7 @@ module Tachikoma
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh(*['git', 'config', 'user.name', @commiter_name])
         sh(*['git', 'config', 'user.email', @commiter_email])
-        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['git', 'checkout', '-b', @branch_name, @base_remote_branch])
         sh(*%w(carton install))
         sh(*%w(carton update))
         sh(*['git', 'add', 'carton.lock']) if File.exist?('carton.lock')
@@ -136,7 +138,7 @@ module Tachikoma
         sh(*['git', 'commit', '-m', "Carton update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+        sh(*['git', 'push', @authorized_compare_url, @branch_name])
       end
     end
 
@@ -144,11 +146,11 @@ module Tachikoma
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh(*['git', 'config', 'user.name', @commiter_name])
         sh(*['git', 'config', 'user.email', @commiter_email])
-        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['git', 'checkout', '-b', @branch_name, @base_remote_branch])
         sh(*['git', 'commit', '--allow-empty', '-m', "None update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+        sh(*['git', 'push', @authorized_compare_url, @branch_name])
       end
     end
 
@@ -156,7 +158,7 @@ module Tachikoma
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh(*['git', 'config', 'user.name', @commiter_name])
         sh(*['git', 'config', 'user.email', @commiter_email])
-        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['git', 'checkout', '-b', @branch_name, @base_remote_branch])
         sh(*['david', 'update', '--warn404'])
         if File.exist?('npm-shrinkwrap.json')
           sh(*['rm', '-rf', 'node_modules/', 'npm-shrinkwrap.json'])
@@ -170,7 +172,7 @@ module Tachikoma
         sh(*['git', 'commit', '-m', "David update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+        sh(*['git', 'push', @authorized_compare_url, @branch_name])
       end
     end
 
@@ -178,7 +180,7 @@ module Tachikoma
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh(*['git', 'config', 'user.name', @commiter_name])
         sh(*['git', 'config', 'user.email', @commiter_email])
-        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['git', 'checkout', '-b', @branch_name, @base_remote_branch])
         # FIXME: Use Octokit.api_endpoint for GitHub Enterprise
         sh(*['composer', 'config', 'github-oauth.github.com', @github_token])
         sh(*['composer', 'install', '--no-interaction'])
@@ -187,7 +189,7 @@ module Tachikoma
         sh(*['git', 'commit', '-m', "Composer update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+        sh(*['git', 'push', @authorized_compare_url, @branch_name])
       end
     end
 
@@ -195,14 +197,14 @@ module Tachikoma
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh(*['git', 'config', 'user.name', @commiter_name])
         sh(*['git', 'config', 'user.email', @commiter_email])
-        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['git', 'checkout', '-b', @branch_name, @base_remote_branch])
         sh(*%w(carthage bootstrap))
         sh(*%w(carthage update))
         sh(*['git', 'add', 'Cartfile.resolved'])
         sh(*['git', 'commit', '-m', "Carthage update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+        sh(*['git', 'push', @authorized_compare_url, @branch_name])
       end
     end
 
@@ -210,14 +212,14 @@ module Tachikoma
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh(*['git', 'config', 'user.name', @commiter_name])
         sh(*['git', 'config', 'user.email', @commiter_email])
-        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['git', 'checkout', '-b', @branch_name, @base_remote_branch])
         sh(*%w(pod install))
         sh(*%w(pod update))
         sh(*['git', 'add', 'Podfile.lock'])
         sh(*['git', 'commit', '-m', "Cocoapods update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+        sh(*['git', 'push', @authorized_compare_url, @branch_name])
       end
     end
 
@@ -225,13 +227,13 @@ module Tachikoma
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh(*['git', 'config', 'user.name', @commiter_name])
         sh(*['git', 'config', 'user.email', @commiter_email])
-        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['git', 'checkout', '-b', @branch_name, @base_remote_branch])
         sh(*%w(ncu -u))
         sh(*['git', 'add', 'package.json']) if File.exist?('package.json')
         sh(*['git', 'commit', '-m', "Ncu update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+        sh(*['git', 'push', @authorized_compare_url, @branch_name])
       end
     end
 
@@ -239,7 +241,7 @@ module Tachikoma
       Dir.chdir("#{Tachikoma.repos_path}/#{@build_for}") do
         sh(*['git', 'config', 'user.name', @commiter_name])
         sh(*['git', 'config', 'user.email', @commiter_email])
-        sh(*['git', 'checkout', '-b', "tachikoma/update-#{@readable_time}", @base_remote_branch])
+        sh(*['git', 'checkout', '-b', @branch_name, @base_remote_branch])
         sh(*%w(yarn install))
         sh(*%w(yarn outdated))
         sh(*%w(yarn upgrade))
@@ -248,7 +250,7 @@ module Tachikoma
         sh(*['git', 'commit', '-m', "Yarn update #{@readable_time}"]) do
           # ignore exitstatus
         end
-        sh(*['git', 'push', @authorized_compare_url, "tachikoma/update-#{@readable_time}"])
+        sh(*['git', 'push', @authorized_compare_url, @branch_name])
       end
     end
 
