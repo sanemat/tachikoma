@@ -39,6 +39,12 @@ timestamp_format: '%Y%m%d%H%M%S'
 # https://github.com/sanemat/gist-mail/pull/54
 #
 pull_request_body: ':hamster::hamster::hamster:'
+
+# The pull request title.
+# You can change pull request title. Default is `Exec tachikoma update %s`
+# %s will be setted timestamp.
+#
+pull_request_title: "Execute `bundle update` at %s"
 #
 # The base branch which you want to pull request,
 # master is most popular, develop and gh-pages are common.
