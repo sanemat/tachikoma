@@ -58,6 +58,10 @@ type: 'fork'
 #
 url: 'https://github.com/sanemat/bot-motoko-tachikoma.git'
 #
+# Use an SSH key and passphrase from account.
+#
+ssh: 'git@github.com:sanemat/bot-motoko-tachikoma.git'
+#
 # For ruby bundler parallel install option
 # Require Bundler v1.4.0 or higher
 # See also:
