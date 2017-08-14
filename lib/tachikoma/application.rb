@@ -49,7 +49,7 @@ module Tachikoma
       @timestamp_format = @configure['timestamp_format']
       @readable_time = Time.now.utc.strftime(@timestamp_format)
       @parallel_option = bundler_parallel_option(Bundler::VERSION, @configure['bundler_parallel_number'])
-      @depth_option = git_clone_depth_option(@configure['git_clone_depth'])
+      @depth_option = git_clone_depth_option(@configure['git_clone_depth'], @configure['base_remote_branch'])
       @bundler_restore_bundled_with = @configure['bundler_restore_bundled_with']
 
       @target_head = target_repository_user(@type, @url, @github_account)
@@ -328,9 +328,12 @@ module Tachikoma
       Gem::Version.create(bundler_version) >= Gem::Version.create('1.4.0')
     end
 
-    def git_clone_depth_option(depth)
+    def git_clone_depth_option(depth, remote_branch)
       return [nil] unless depth
-      ['--depth', depth.to_s]
+      branch_names = remote_branch.split('/')
+      branch_names.shift
+      branch_name = branch_names.join('/')
+      ['--depth', depth.to_s, '--branch', branch_name]
     end
   end
 end

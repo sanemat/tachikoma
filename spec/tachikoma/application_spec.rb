@@ -185,17 +185,28 @@ YAML
     subject { described_class.new }
 
     context 'depth is not provided' do
+      let(:branch) { 'origin/master' }
       let(:nil_for_expand) { [nil] }
       it 'returns nil' do
-        expect(subject.git_clone_depth_option(nil)).to eq nil_for_expand
+        expect(subject.git_clone_depth_option(nil, branch)).to eq nil_for_expand
       end
     end
 
     context 'depth is provided' do
+      let(:branch) { 'origin/master' }
       let(:depth) { 10 }
-      let(:depth_for_expand) { ['--depth', '10'] }
+      let(:depth_for_expand) { ['--depth', '10', '--branch', 'master'] }
       it 'returns depth' do
-        expect(subject.git_clone_depth_option(depth)).to eq depth_for_expand
+        expect(subject.git_clone_depth_option(depth, branch)).to eq depth_for_expand
+      end
+    end
+
+    context 'more complex branch' do
+      let(:branch) { 'origin/more/complex/branch' }
+      let(:depth) { 10 }
+      let(:depth_for_expand) { ['--depth', '10', '--branch', 'more/complex/branch'] }
+      it 'returns depth' do
+        expect(subject.git_clone_depth_option(depth, branch)).to eq depth_for_expand
       end
     end
   end
